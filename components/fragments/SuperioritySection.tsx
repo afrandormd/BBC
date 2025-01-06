@@ -1,3 +1,5 @@
+import { Layers, Banana, PoundSterling } from 'lucide-react';
+
 export default function Superiority() {
   return (
     <section className="w-full py-12 bg-[#FDF6EC]">
@@ -12,7 +14,8 @@ export default function Superiority() {
           {/* Card 1 */}
           <div className="bg-primary rounded-lg p-6 text-center hover:shadow-lg transition-shadow">
             <div className="w-12 h-12 mx-auto mb-4 flex items-center justify-center">
-              {/* Icon Placeholder */}
+               {/* Icon Placeholder */}
+            <Layers className="w-8 h-8 text-secondary" />
             </div>
             <h3 className="font-semibold text-secondary mb-2">Rasa Otentik</h3>
             <p className="text-sm text-secondary/80">
@@ -22,7 +25,7 @@ export default function Superiority() {
           {/* Card 2 */}
           <div className="bg-primary rounded-lg p-6 text-center hover:shadow-lg transition-shadow">
             <div className="w-12 h-12 mx-auto mb-4 flex items-center justify-center">
-              {/* Icon Placeholder */}
+            <Banana className="w-8 h-8 text-secondary" />
             </div>
             <h3 className="font-semibold text-secondary mb-2">Bahan Berkualitas</h3>
             <p className="text-sm text-secondary/80">Hanya menggunakan bahan segar dari alam Lampung.</p>
@@ -30,7 +33,7 @@ export default function Superiority() {
           {/* Card 3 */}
           <div className="bg-primary rounded-lg p-6 text-center hover:shadow-lg transition-shadow">
             <div className="w-12 h-12 mx-auto mb-4 flex items-center justify-center">
-              {/* Icon Placeholder */}
+            <PoundSterling className="w-8 h-8 text-secondary" />
             </div>
             <h3 className="font-semibold text-secondary mb-2">Cocok untuk Segala Momen</h3>
             <p className="text-sm text-secondary/80">Camilan nikmat untuk setiap momen hingga hadiah spesial.</p>
