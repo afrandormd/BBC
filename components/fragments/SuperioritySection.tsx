@@ -8,7 +8,11 @@ export default function Superiority() {
 
       <div className="grid grid-cols-1 md:grid-cols-3 gap-6">
         {/* Card 1 */}
-        <div></div>
+        <div>
+          <h3>Rasa Otentik</h3>
+          <p>Cita rasa asli kripik Lampung yang tak tertanding.</p>
+        </div>
+
         {/* Card 2 */}
         <div></div>
         {/* Card 3 */}
