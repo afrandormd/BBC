@@ -10,19 +10,19 @@ export default function Superiority() {
         </div>
         <div className="grid grid-cols-1 md:grid-cols-3 gap-6 max-w-4xl mx-auto">
           {/* Card 1 */}
-          <div className="bg-primary rounded-lg p-6 text-center">
+          <div className="bg-primary rounded-lg p-6 text-center hover:shadow-lg transition-shadow">
             <h3 className="font-semibold text-secondary mb-2">Rasa Otentik</h3>
             <p className="text-sm text-secondary/80">
               Cita rasa asli kripik Lampung yang tak tertanding.
             </p>
           </div>
           {/* Card 2 */}
-          <div className="bg-primary rounded-lg p-6 text-center">
+          <div className="bg-primary rounded-lg p-6 text-center hover:shadow-lg transition-shadow">
             <h3 className="font-semibold text-secondary mb-2">Bahan Berkualitas</h3>
             <p className="text-sm text-secondary/80">Hanya menggunakan bahan segar dari alam Lampung.</p>
           </div>
           {/* Card 3 */}
-          <div className="bg-primary rounded-lg p-6 text-center">
+          <div className="bg-primary rounded-lg p-6 text-center hover:shadow-lg transition-shadow">
             <h3 className="font-semibold text-secondary mb-2">Cocok untuk Segala Momen</h3>
             <p className="text-sm text-secondary/80">Camilan nikmat untuk setiap momen hingga hadiah spesial.</p>
           </div>
