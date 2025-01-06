@@ -12,11 +12,16 @@ export default function Superiority() {
           <h3>Rasa Otentik</h3>
           <p>Cita rasa asli kripik Lampung yang tak tertanding.</p>
         </div>
-
         {/* Card 2 */}
-        <div></div>
+        <div>
+          <h3>Bahan Berkualitas</h3>
+          <p>Hanya menggunakan bahan segar dari alam Lampung.</p>
+        </div>
         {/* Card 3 */}
-        <div></div>
+        <div>
+          <h3>Cocok untuk Segala Momen</h3>
+          <p>Camilan nikmat untuk setiap momen hingga hadiah spesial.</p>
+        </div>
       </div>
 
     </section>
