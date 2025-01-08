@@ -1,3 +1,4 @@
+import AboutSection from "@/components/fragments/AboutSection";
 import HeroSection from "@/components/fragments/HeroSection";
 import Superiority from "@/components/fragments/SuperioritySection";
 
@@ -9,6 +10,9 @@ export default function Home() {
 
       {/* Bagian Superiority Sectin  */}
       <Superiority />
+
+      {/* Bagian About Section */}
+      <AboutSection />
     </>
   );
 }

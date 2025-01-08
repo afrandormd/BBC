@@ -29,12 +29,58 @@ export default function AboutSection() {
               <Image
                 src="/placeholder.svg"
                 alt="Askha Jaya Store"
-                width={400}
-                height={300}
+                width={600}
+                height={400}
                 className="w-full h-auto object-cover rounded-lg"
               />
             </CardContent>
           </Card>
+        </div>
+        {/* Vision & Mission Section */}
+        <div className="grid md:grid-cols-2 gap-8 items-start">
+          <Card className="overflow-hidden border-none shadow-lg max-w-md mx-auto">
+            <CardContent className="p-0">
+              <Image
+                src="/placeholder.svg"
+                alt="Askha Jaya Team"
+                width={600}
+                height={400}
+                className="w-full h-auto object-cover rounded-lg"
+              />
+            </CardContent>
+          </Card>
+          <div className="space-y-8">
+            <div>
+              <h2 className="text-3xl font-bold text-[#8B5E34] mb-4">
+                Visi Kami
+              </h2>
+              <p className="text-[#6B4423] text-lg">
+                Menghadirkan minimal 500 cabang pada tahun 2026
+              </p>
+            </div>
+
+            <div>
+              <h2 className="text-3xl font-bold text-[#8B5E34] mb-4">
+                Misi kami
+              </h2>
+              <ul className="space-y-3 text-[#6B4423]">
+                <li className="flex items-start">
+                  <span className="mr-2">•</span>
+                  <span>
+                    Menghadirkan makanan dan minuman yang dapat dinikmati
+                    seluruh lapisan masyarakat dengan harga terjangkau.
+                  </span>
+                </li>
+                <li className="flex items-start">
+                  <span className="mr-2">•</span>
+                  <span>
+                    Membuka lebih banyak lapangan kerja dan meningkatkan jumlah
+                    wirausahawan.
+                  </span>
+                </li>
+              </ul>
+            </div>
+          </div>
         </div>
       </div>
     </div>
