@@ -49,6 +49,38 @@ export default function AboutSection() {
               />
             </CardContent>
           </Card>
+          <div className="space-y-8">
+            <div>
+              <h2 className="text-3xl font-bold text-[#8B5E34] mb-4">
+                Visi Kami
+              </h2>
+              <p className="text-[#6B4423] text-lg">
+                Menghadirkan minimal 500 cabang pada tahun 2026
+              </p>
+            </div>
+
+            <div>
+              <h2 className="text-3xl font-bold text-[#8B5E34] mb-4">
+                Misi kami
+              </h2>
+              <ul className="space-y-3 text-[#6B4423]">
+                <li className="flex items-start">
+                  <span className="mr-2">•</span>
+                  <span>
+                    Menghadirkan makanan dan minuman yang dapat dinikmati
+                    seluruh lapisan masyarakat dengan harga terjangkau.
+                  </span>
+                </li>
+                <li className="flex items-start">
+                  <span className="mr-2">•</span>
+                  <span>
+                    Membuka lebih banyak lapangan kerja dan meningkatkan jumlah
+                    wirausahawan.
+                  </span>
+                </li>
+              </ul>
+            </div>
+          </div>
         </div>
       </div>
     </div>
