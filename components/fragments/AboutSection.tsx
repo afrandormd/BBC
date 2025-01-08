@@ -29,8 +29,22 @@ export default function AboutSection() {
               <Image
                 src="/placeholder.svg"
                 alt="Askha Jaya Store"
-                width={400}
-                height={300}
+                width={600}
+                height={400}
+                className="w-full h-auto object-cover rounded-lg"
+              />
+            </CardContent>
+          </Card>
+        </div>
+        {/* Vision & Mission Section */}
+        <div className="grid md:grid-cols-2 gap-8 items-start">
+          <Card className="overflow-hidden border-none shadow-lg max-w-md mx-auto">
+            <CardContent className="p-0">
+              <Image
+                src="/placeholder.svg"
+                alt="Askha Jaya Team"
+                width={600}
+                height={400}
                 className="w-full h-auto object-cover rounded-lg"
               />
             </CardContent>
