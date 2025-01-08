@@ -27,7 +27,7 @@ export default function AboutSection() {
           <Card className="overflow-hidden border-none shadow-lg max-w-md mx-auto">
             <CardContent className="p-0">
               <Image
-                src="/gambar-toko.jpg"
+                src="/gambar-toko.png"
                 alt="Askha Jaya Store"
                 width={600}
                 height={400}
@@ -41,7 +41,7 @@ export default function AboutSection() {
           <Card className="overflow-hidden border-none shadow-lg max-w-md mx-auto">
             <CardContent className="p-0">
               <Image
-                src="/visi-misi.jpg"
+                src="/visi-misi.png"
                 alt="Askha Jaya Team"
                 width={600}
                 height={400}
