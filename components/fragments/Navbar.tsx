@@ -8,7 +8,8 @@ import { Button } from "../elements/button";
 const links = [
   { id: 1, href: "/", text: "Beranda" },
   { id: 2, href: "/lokasi", text: "Lokasi" },
-  { id: 3, href: "/about", text: "About" },
+  { id: 3, href: "/allproducts", text: "Semua Produk" },
+  { id: 4, href: "/about", text: "Tentang Kami" },
 ];
 
 const Navbar = () => {
