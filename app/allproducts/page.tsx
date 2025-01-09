@@ -105,6 +105,21 @@ export default function ProductListing() {
               </div>
             </div>
           </div>
+
+          {/* input & search form */}
+          <div className="space-y-6">
+            <div className="flex gap-2">
+              <Input
+                placeholder="Cari Produk..."
+                className="max-w-full bg-white"
+              />
+              <Button className="bg-primary hover:bg-secondary text-secondary hover:text-primary">
+                Search
+              </Button>
+            </div>
+          </div>
+
+          {/* Card All Products */}
         </div>
       </div>
     </section>
