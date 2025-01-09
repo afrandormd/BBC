@@ -117,9 +117,37 @@ export default function ProductListing() {
                 Search
               </Button>
             </div>
+            {/* Card All Products */}
+            <div className="grid sm:grid-cols-2 md:grid-cols-3 gap-6">
+              {products.map((product) => (
+                <Card
+                  key={product.id}
+                  className="rounded-3xl shadow-md overflow-hidden transform transition-transform hover:-translate-y-1"
+                >
+                  <CardContent className="p-0">
+                    <div className="bg-white p-6 flex items-center justify-center">
+                      <div className="w-48 h-48 relative">
+                        <Image
+                          src={product.image}
+                          alt={product.name}
+                          fill
+                          className="object-cover rounded-lg"
+                        />
+                      </div>
+                    </div>
+                    <div className="bg-[#FDF6EC] p-6 flex flex-col items-center">
+                      <h3 className="text-gray-800 text-center font-medium mb-2">
+                        {product.name}
+                      </h3>
+                      <p className="text-secondary font-bold">
+                        Rp. {product.price.toLocaleString()}
+                      </p>
+                    </div>
+                  </CardContent>
+                </Card>
+              ))}
+            </div>
           </div>
-
-          {/* Card All Products */}
         </div>
       </div>
     </section>
