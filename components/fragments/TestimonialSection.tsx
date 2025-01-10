@@ -1,6 +1,8 @@
 'use client'
 
 import * as React from "react"
+import { Card, CardContent } from "../elements/card"
+
 
 const testimonials = [
     {
@@ -34,9 +36,11 @@ export default function Testimonial() {
 
                 <div>
                     {testimonials.map((testimonial, index) => (
-                        <div key={index} className="mb-4">
-                            <strong>{testimonial.name}</strong> ({testimonial.location}): {testimonial.quote}
-                        </div>
+                        <Card key={index} className="bg-white shadow-md mb-4">
+                            <CardContent className="p-4">
+                                <strong>{testimonial.name}</strong> ({testimonial.location}): {testimonial.quote}
+                            </CardContent>
+                        </Card>
                     ))}
                 </div>
 
