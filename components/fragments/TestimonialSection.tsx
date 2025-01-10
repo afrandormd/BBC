@@ -2,6 +2,25 @@
 
 import * as React from "react"
 
+const testimonials = [
+    {
+      name: "Ayu Wulandari",
+      location: "Mahasiswa",
+      quote: "Produk ini membantu meningkatkan produktivitas. Sangat direkomendasikan!"
+    },
+    {
+      name: "Siti Nurhaliza",
+      location: "Business Owner",
+      quote: "Layanan pelanggan yang luar biasa dan produk berkualitas tinggi. Akan terus pakai!"
+    },
+    {
+      name: "John Doe",
+      location: "Professional",
+      quote: "Puas dengan kualitas produk dan pelayanannya. Recommended!"
+    }
+  ]
+  
+
 export default function Testimonial() {
   return (
     <section className="w-full py-12 bg-[#FFF4D9]">
