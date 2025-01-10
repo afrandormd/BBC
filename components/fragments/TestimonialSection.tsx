@@ -3,7 +3,13 @@
 import * as React from "react"
 import { Card, CardContent } from "../elements/card"
 import { Avatar, AvatarFallback, AvatarImage } from "../elements/avatar"
-
+import {
+    Carousel,
+    CarouselContent,
+    CarouselItem,
+    CarouselNext,
+    CarouselPrevious,
+} from "../elements/carousel"
 
 const testimonials = [
     {
@@ -35,23 +41,29 @@ export default function Testimonial() {
                     Review pelanggan mengenai layanan dan produk dari askha jaya
                 </p>
 
-                <div>
-                {
-  testimonials.map((testimonial, index) => (
-    <Card key={index} className="bg-white shadow-md mb-4">
-      <CardContent className="p-4 flex items-center gap-4">
-        <Avatar>
-          <AvatarImage src="/placeholder.svg" alt={testimonial.name} />
-          <AvatarFallback>{testimonial.name[0]}</AvatarFallback>
-        </Avatar>
-        <div>
-          <strong>{testimonial.name}</strong> ({testimonial.location}): {testimonial.quote}
-        </div>
-      </CardContent>
-    </Card>
-  ))
-}
-                </div>
+            <div>
+                <Carousel opts={{ loop: true }} className="max-w-5xl mx-auto">
+                    <CarouselContent>
+                        {testimonials.map((testimonial, index) => (
+                            <CarouselItem key={index}>
+                                <Card className="bg-white shadow-md">
+                                    <CardContent className="p-4">
+                                        <Avatar>
+                                            <AvatarImage src="/placeholder.svg" alt={testimonial.name} />
+                                            <AvatarFallback>{testimonial.name[0]}</AvatarFallback>
+                                        </Avatar>
+                                        <div>
+                                            <strong>{testimonial.name}</strong> ({testimonial.location}): {testimonial.quote}
+                                        </div>
+                                    </CardContent>
+                                </Card>
+                            </CarouselItem>
+                        ))}
+                    </CarouselContent>
+                    <CarouselPrevious />
+                    <CarouselNext />
+                </Carousel>
+            </div>
 
             </div>
         </section>
