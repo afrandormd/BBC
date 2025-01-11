@@ -38,3 +38,16 @@ const faqs = [
       "Sebagian besar produk makanan yang kami jual telah memiliki sertifikasi halal. Informasi detail mengenai sertifikasi dapat dilihat pada deskripsi masing-masing produk.",
   },
 ];
+
+export default function FAQSection() {
+  const [searchTerm, setSearchTerm] = useState("")
+  
+   const filteredFaqs = faqs.filter(
+    (faq) =>
+      faq.question.toLowerCase().includes(searchTerm.toLowerCase()) ||
+      faq.answer.toLowerCase().includes(searchTerm.toLowerCase())
+  )
+  return ()
+}
+
+
