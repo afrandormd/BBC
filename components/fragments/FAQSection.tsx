@@ -40,14 +40,32 @@ const faqs = [
 ];
 
 export default function FAQSection() {
-  const [searchTerm, setSearchTerm] = useState("")
-  
-   const filteredFaqs = faqs.filter(
+  const [searchTerm, setSearchTerm] = useState("");
+
+  const filteredFaqs = faqs.filter(
     (faq) =>
       faq.question.toLowerCase().includes(searchTerm.toLowerCase()) ||
-      faq.answer.toLowerCase().includes(searchTerm.toLowerCase())
-  )
-  return ()
+      faq.answer.toLowerCase().includes(searchTerm.toLowerCase()),
+  );
+  return (
+    <section className="py-12 bg-gray-50">
+      <div className="container mx-auto px-4">
+        <h2 className="text-3xl font-bold text-center mb-8">
+          Pertanyaan yang Sering Diajukan
+        </h2>
+        <div className="max-w-xl mx-auto mb-8">
+          <div className="relative">
+            <Search className="absolute left-3 top-1/2 transform -translate-y-1/2 text-gray-400" />
+            <Input
+              type="text"
+              placeholder="Cari pertanyaan..."
+              className="pl-10"
+              value={searchTerm}
+              onChange={(e) => setSearchTerm(e.target.value)}
+            />
+          </div>
+        </div>
+      </div>
+    </section>
+  );
 }
-
-
