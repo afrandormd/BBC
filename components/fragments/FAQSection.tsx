@@ -50,10 +50,14 @@ export default function FAQSection() {
   return (
     <section className="py-12 bg-gray-50">
       <div className="container mx-auto px-4">
+        {" "}
+        {/* container pembungkus */}
         <h2 className="text-3xl font-bold text-center mb-8">
           Pertanyaan yang Sering Diajukan
         </h2>
         <div className="max-w-xl mx-auto mb-8">
+          {" "}
+          {/* komponen pencarian pertanyaan */}
           <div className="relative">
             <Search className="absolute left-3 top-1/2 transform -translate-y-1/2 text-gray-400" />
             <Input
@@ -64,8 +68,42 @@ export default function FAQSection() {
               onChange={(e) => setSearchTerm(e.target.value)}
             />
           </div>
-        </div>
-      </div>
+        </div>{" "}
+        {/* penutup pencarian pertanyaan */}
+        <AnimatePresence>
+          {filteredFaqs.length > 0 ? (
+            <motion.div
+              initial={{ opacity: 0, y: 20 }}
+              animate={{ opacity: 1, y: 0 }}
+              exit={{ opacity: 0, y: 20 }}
+              transition={{ duration: 0.3 }}
+            >
+              <Accordion
+                type="single"
+                collapsible
+                className="max-w-2xl mx-auto"
+              >
+                {filteredFaqs.map((faq, index) => (
+                  <AccordionItem key={index} value={`item-${index}`}>
+                    <AccordionTrigger>{faq.question}</AccordionTrigger>
+                    <AccordionContent>{faq.answer}</AccordionContent>
+                  </AccordionItem>
+                ))}
+              </Accordion>
+            </motion.div>
+          ) : (
+            <motion.p
+              initial={{ opacity: 0 }}
+              animate={{ opacity: 1 }}
+              exit={{ opacity: 0 }}
+              className="text-center text-gray-500"
+            >
+              Tidak ada pertanyaan yang cocok dengan pencarian Anda.
+            </motion.p>
+          )}
+        </AnimatePresence>
+      </div>{" "}
+      {/* penutup akhir container */}
     </section>
   );
 }
