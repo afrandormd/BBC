@@ -1,3 +1,4 @@
+"use client";
 import Image from "next/image";
 import { MapPin, Clock, Phone } from "lucide-react";
 import { Button } from "@/components/elements/button";
@@ -31,3 +32,78 @@ const storeLocations: StoreLocation[] = [
     mapUrl: "https://maps.app.goo.gl/7FDMeE5DLWJRvcvY6",
   },
 ];
+export default function StoreLocations() {
+  const handleMapClick = (url: string) => {
+    window.open(url, "_blank");
+  };
+  return (
+    <section className="pt-20 pb-12 px-4">
+      <div className="max-w-6xl mx-auto">
+        <div className="text-center mb-12">
+          <h2 className="text-4xl font-bold mb-2 text-[#8B4513] font-serif">
+            Lokasi Toko Kami
+          </h2>
+          <p className="text-muted-foreground">
+            Kunjungi toko Askha Jaya terdekat di lokasi Anda
+          </p>
+        </div>
+
+        <div className="grid gap-6">
+          {storeLocations.map((store, index) => (
+            <Card key={index} className="overflow-hidden">
+              <CardHeader className="bg-primary/5 py-3">
+                <div className="flex items-center gap-2">
+                  <MapPin className="w-4 h-4" />
+                  <p className="font-medium">
+                    {store.name} - {store.branch}
+                  </p>
+                </div>
+              </CardHeader>
+              <div className="relative w-full h-[200px] bg-muted">
+                <Image
+                  src="/gambar-toko.png"
+                  alt={`${store.name} ${store.branch}`}
+                  fill
+                  className="object-cover"
+                />
+              </div>
+              <CardContent className="p-6">
+                <div className="grid gap-4">
+                  <div className="grid gap-2">
+                    <div className="text-sm font-medium">Alamat:</div>
+                    <div className="text-sm text-muted-foreground">
+                      {store.address}
+                    </div>
+                  </div>
+                  <div className="grid gap-2">
+                    <div className="flex items-center gap-2 text-sm">
+                      <Clock className="w-4 h-4" />
+                      <span className="font-medium">Jam Operasional:</span>
+                      <span className="text-muted-foreground">
+                        {store.operatingHours}
+                      </span>
+                    </div>
+                    <div className="flex items-center gap-2 text-sm">
+                      <Phone className="w-4 h-4" />
+                      <span className="font-medium">Telepon:</span>
+                      <span className="text-muted-foreground">
+                        {store.phone}
+                      </span>
+                    </div>
+                  </div>
+                  <Button
+                    variant="outline"
+                    className="w-full sm:w-auto"
+                    onClick={() => handleMapClick(store.mapUrl)}
+                  >
+                    Lihat di Google Maps
+                  </Button>
+                </div>
+              </CardContent>
+            </Card>
+          ))}
+        </div>
+      </div>
+    </section>
+  );
+}
