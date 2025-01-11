@@ -1,4 +1,5 @@
 import AboutSection from "@/components/fragments/AboutSection";
+import FAQSection from "@/components/fragments/FAQSection";
 import FeaturedProductSection from "@/components/fragments/FeaturedProductSection";
 import HeroSection from "@/components/fragments/HeroSection";
 import Superiority from "@/components/fragments/SuperioritySection";
@@ -17,6 +18,8 @@ export default function Home() {
       <Testimonial />
       {/* Bagian About Section */}
       <AboutSection />
+      {/* Bagian FAQs Section */}
+      <FAQSection />
     </>
   );
 }
