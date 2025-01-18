@@ -40,7 +40,7 @@ export default function StoreLocations() {
     <section className="pt-20 pb-12 px-4">
       <div className="max-w-6xl mx-auto">
         <div className="text-center mb-12">
-          <h2 className="text-4xl font-bold mb-2 text-[#8B4513] font-serif">
+          <h2 className="text-4xl font-bold mb-2 text-secondary font-serif">
             Lokasi Toko Kami
           </h2>
           <p className="text-muted-foreground">
@@ -92,8 +92,8 @@ export default function StoreLocations() {
                     </div>
                   </div>
                   <Button
-                    variant="outline"
-                    className="w-full sm:w-auto"
+                    // variant="outline"
+                    className="w-full sm:w-auto hover:bg-secondary text-secondary hover:text-primary"
                     onClick={() => handleMapClick(store.mapUrl)}
                   >
                     Lihat di Google Maps
