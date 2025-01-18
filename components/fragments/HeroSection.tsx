@@ -1,6 +1,7 @@
 import Image from "next/image";
 // import { Button } from "@/elements/button"
 import { Button } from "../elements/button";
+import Link from "next/link";
 
 export default function HeroSection() {
   return (
@@ -23,15 +24,19 @@ export default function HeroSection() {
               fokus utama.
             </p>
             <div className="flex flex-col gap-2 min-[400px]:flex-row">
-              <Button className="bg-primary text-white hover:bg-secondary hover:text-primary">
-                All Products
-              </Button>
-              <Button
-                variant="outline"
-                className="border-primary text-primary hover:bg-primary hover:text-white"
-              >
-                About Us
-              </Button>
+              <Link href="/allproducts">
+                <Button className="w-full bg-primary text-white hover:bg-secondary hover:text-primary">
+                  All Products
+                </Button>
+              </Link>
+              <Link href="/about">
+                <Button
+                  variant="outline"
+                  className="w-full border-primary text-primary hover:bg-primary hover:text-white"
+                >
+                  About Us
+                </Button>
+              </Link>
             </div>
           </div>
           <div className="mx-auto lg:ml-auto">

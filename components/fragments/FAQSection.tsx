@@ -52,7 +52,7 @@ export default function FAQSection() {
       <div className="container mx-auto px-4">
         {" "}
         {/* container pembungkus */}
-        <h2 className="text-3xl font-bold text-center mb-8">
+        <h2 className="text-4xl font-serif text-secondary font-bold text-center mb-8">
           Pertanyaan yang Sering Diajukan
         </h2>
         <div className="max-w-xl mx-auto mb-8">
@@ -63,7 +63,7 @@ export default function FAQSection() {
             <Input
               type="text"
               placeholder="Cari pertanyaan..."
-              className="pl-10"
+              className="pl-10 bg-white"
               value={searchTerm}
               onChange={(e) => setSearchTerm(e.target.value)}
             />

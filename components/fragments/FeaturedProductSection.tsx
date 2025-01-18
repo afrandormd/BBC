@@ -35,7 +35,7 @@ export default function FeaturedProductSection() {
     <section className="py-16 px-4 bg-[#FDF6EC]">
       <div className="max-w-6xl mx-auto">
         <div className="text-center mb-12">
-          <h2 className="text-[#8B5E34] text-4xl font-serif mb-3">
+          <h2 className="text-secondary text-4xl font-bold font-serif mb-3">
             Produk Pilihan
           </h2>
           <p className="text-gray-700 text-lg">
@@ -64,7 +64,7 @@ export default function FeaturedProductSection() {
                   <h3 className="text-gray-800 text-center font-medium mb-2">
                     {product.name}
                   </h3>
-                  <p className="text-[#8B5E34] font-medium">
+                  <p className="text-secondary font-medium">
                     Rp. {product.price.toLocaleString()}
                   </p>
                 </div>

@@ -1,12 +1,14 @@
-import { Layers, Banana, PoundSterling } from 'lucide-react';
+import { Layers, Banana, PoundSterling } from "lucide-react";
 
 export default function Superiority() {
   return (
     <section className="w-full py-12 bg-[#FDF6EC]">
       <div className="container px-4 mx-auto">
         <div className="text-center mb-10">
-          <h2 className="text-3xl font-bold text-secondary mb-2">Kenapa Pilih Askha Jaya?</h2>
-          <p className="text-secondary/80">
+          <h2 className="text-4xl font-bold text-secondary font-serif mb-2">
+            Kenapa Pilih Askha Jaya?
+          </h2>
+          <p className="text-gray-700">
             Temukan kelezatan kami di sini dan rasakan sendiri kenikmatannya!
           </p>
         </div>
@@ -14,8 +16,8 @@ export default function Superiority() {
           {/* Card 1 */}
           <div className="bg-primary rounded-lg p-6 text-center hover:shadow-lg transition-shadow">
             <div className="w-12 h-12 mx-auto mb-4 flex items-center justify-center">
-               {/* Icon Placeholder */}
-            <Layers className="w-8 h-8 text-secondary" />
+              {/* Icon Placeholder */}
+              <Layers className="w-8 h-8 text-secondary" />
             </div>
             <h3 className="font-semibold text-secondary mb-2">Rasa Otentik</h3>
             <p className="text-sm text-secondary/80">
@@ -25,22 +27,29 @@ export default function Superiority() {
           {/* Card 2 */}
           <div className="bg-primary rounded-lg p-6 text-center hover:shadow-lg transition-shadow">
             <div className="w-12 h-12 mx-auto mb-4 flex items-center justify-center">
-            <Banana className="w-8 h-8 text-secondary" />
+              <Banana className="w-8 h-8 text-secondary" />
             </div>
-            <h3 className="font-semibold text-secondary mb-2">Bahan Berkualitas</h3>
-            <p className="text-sm text-secondary/80">Hanya menggunakan bahan segar dari alam Lampung.</p>
+            <h3 className="font-semibold text-secondary mb-2">
+              Bahan Berkualitas
+            </h3>
+            <p className="text-sm text-secondary/80">
+              Hanya menggunakan bahan segar dari alam Lampung.
+            </p>
           </div>
           {/* Card 3 */}
           <div className="bg-primary rounded-lg p-6 text-center hover:shadow-lg transition-shadow">
             <div className="w-12 h-12 mx-auto mb-4 flex items-center justify-center">
-            <PoundSterling className="w-8 h-8 text-secondary" />
+              <PoundSterling className="w-8 h-8 text-secondary" />
             </div>
-            <h3 className="font-semibold text-secondary mb-2">Cocok untuk Segala Momen</h3>
-            <p className="text-sm text-secondary/80">Camilan nikmat untuk setiap momen hingga hadiah spesial.</p>
+            <h3 className="font-semibold text-secondary mb-2">
+              Cocok untuk Segala Momen
+            </h3>
+            <p className="text-sm text-secondary/80">
+              Camilan nikmat untuk setiap momen hingga hadiah spesial.
+            </p>
           </div>
         </div>
       </div>
     </section>
-
-  )
+  );
 }
