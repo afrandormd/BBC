@@ -12,3 +12,15 @@ datasource db {
   provider = "mysql"
   url      = env("DATABASE_URL")
 }
+
+// model untuk produk
+model Product {
+  id       Int      @id @default(autoincrement())
+  name     String
+  price    Float
+  image    String
+  category String
+  createdAt DateTime @default(now())
+  updatedAt DateTime @updatedAt
+}
+
