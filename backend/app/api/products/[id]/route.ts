@@ -53,6 +53,83 @@ export async function GET(request: NextRequest, props: { params: Promise<{ id: s
       }
     ) 
   }
+}
+
+// service PUT (update) data product
+export async function PUT(request: NextRequest, props: { params: Promise<{ id: string }>}) {
+
+  // get params id
+  const params = await props.params
+
+  // cek apakah id ada atau tidak
+  const product = await prisma.product.findUnique({
+    where: {
+      id: Number(params.id),
+    }
+  }) 
+
+  // jika data produk tidak ditemukan
+  if (!product) {
+    return NextResponse.json(
+      {
+        success: false,
+        message: "Data Produk Tidak Ditemukan!"
+      },
+      {
+        status: 404,
+      }
+    )
+  }
+
+  // buat data objek untuk isian
+  const { name, price, image, category} = await request.json()
+
+  // check apakah nama produk sudah ada atau belum
+  const checkNameProduct = await prisma.product.findMany({
+    where: {
+      name: name,
+      NOT: {id: Number(params.id)}
+    },
+  })
+
+  // jika data nama produk ditemukan
+  if (checkNameProduct.length >= 1) {
+    return NextResponse.json(
+      {
+        success: false,
+        message: "Data Produk Gagal Diubah! Nama produk telah terdaftar."
+      },
+      {
+        status: 409,
+      }
+    )
+  }
+
+  // fungsi edit data
+  const edit = await prisma.product.update({
+    where: {
+      id: Number(params.id),
+    },
+    data: {
+      name: name,
+      price: price,
+      image: image,
+      category: category,
+      updatedAt: new Date(),
+    },
+  })
+
+  // return response json
+  return NextResponse.json(
+    {
+      success: true,
+      message: "Data produk berhasil di ubah!",
+      // data: product,
+    },
+    {
+      status: 200,
+    }
+  )
 
 }
 
