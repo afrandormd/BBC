@@ -1,4 +1,4 @@
 NAMA             : AFRANDO SHAREIN RAMADHAN
 NPM              : 22312105
 ROLE             : BACKEND
-LINK DOKUMENTASI :  
+LINK DOKUMENTASI : https://documenter.getpostman.com/view/34054382/2sB2qXjNW1 
