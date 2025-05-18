@@ -161,5 +161,50 @@ export async function PUT(request: NextRequest, props: { params: Promise<{ id: s
 }
 
 
+// service DELETE data products 
+export async function DELETE(request: NextRequest, props: { params: Promise<{ id: string }> }) {
+
+  // get params id
+  const params = await props.params
+
+  // cek apakah data produk ada 
+  const product = await prisma.product.findUnique({
+    where: {
+      id: Number(params.id)
+    }
+  })
+
+  // jika data tidak ditemukan
+  if (!product) {
+    return NextResponse.json(
+      {
+        success: false,
+        message: "Data produk tidak ada!",
+      }, 
+      {
+        status: 404,
+      },
+    )
+  }
+
+  // proses delete data
+  const deleteProduct = await prisma.product.delete({
+    where: {
+      id: Number(params.id),
+    },
+  }) 
+
+  // return response json
+  return NextResponse.json(
+    {
+      success: true,
+      message: "Data produk berhasil di hapus!",
+    },
+    {
+      status: 200,
+    },
+  )
+}
+
 
 
