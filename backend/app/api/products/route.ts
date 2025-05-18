@@ -21,3 +21,31 @@ export async function GET() {
     }
   )
 }
+
+// fungsi tambah data products
+export async function POST(request: any) {
+  // get all request
+  const { name, price, image, category} = await request.json()
+
+  // create data product
+  const product = await prisma.product.create({
+    data: {
+      name: name,
+      price: price,
+      image: image,
+      category: category,
+    },
+  })
+
+  // return response JSON
+  return NextResponse.json(
+    {
+      success: true,
+      message: "Data Produk Berhasil Dibuat!",
+      data: product,
+    },
+    {
+      status: 201,
+    }
+  )
+}
