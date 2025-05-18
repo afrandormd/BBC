@@ -27,6 +27,26 @@ export async function POST(request: any) {
   // get all request
   const { name, price, image, category} = await request.json()
 
+  // validasi apakah nama produk sudah pernah dibuat atau belum
+  const check = await prisma.product.findMany({
+    where: {
+      name: name,
+    },
+  })
+
+  // jika data nama produk ditemukan
+  if (check.length === 1) {
+    return NextResponse.json(
+      {
+        success: false,
+        message: "Data Produk Gagal Disimpan! Nama Produk Sudah Ada",
+      },
+      {
+        status: 409,
+      },
+    )
+  }
+
   // create data product
   const product = await prisma.product.create({
     data: {
@@ -36,6 +56,7 @@ export async function POST(request: any) {
       category: category,
     },
   })
+
 
   // return response JSON
   return NextResponse.json(
