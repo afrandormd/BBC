@@ -96,10 +96,10 @@ export async function PUT(request: NextRequest, props: { params: Promise<{ id: s
   }
 
   // buat data objek untuk isian
-  const { name, price, image, category} = await request.json()
+  const { name, price, description, image, category} = await request.json()
 
   // validasi data yang diterima
-  if(!name || !price || !image || !category) {
+  if(!name || !price || !description || !image || !category) {
     return NextResponse.json(
       {
         success: false,
@@ -140,6 +140,7 @@ export async function PUT(request: NextRequest, props: { params: Promise<{ id: s
     data: {
       name: name,
       price: price,
+      description: description,
       image: image,
       category: category,
       updatedAt: new Date(),

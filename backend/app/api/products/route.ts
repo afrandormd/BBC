@@ -25,7 +25,7 @@ export async function GET() {
 // fungsi tambah data products
 export async function POST(request: any) {
   // get all request
-  const { name, price, image, category} = await request.json()
+  const { name, price, image, description, category} = await request.json()
 
   // validasi apakah nama produk sudah pernah dibuat atau belum
   const check = await prisma.product.findMany({
@@ -53,6 +53,7 @@ export async function POST(request: any) {
       name: name,
       price: price,
       image: image,
+      description: description,
       category: category,
     },
   })
