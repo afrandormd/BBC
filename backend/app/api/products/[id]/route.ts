@@ -61,6 +61,20 @@ export async function PUT(request: NextRequest, props: { params: Promise<{ id: s
   // get params id
   const params = await props.params
 
+
+  // validasi parameter / slug id
+  if (isNaN(Number(params.id))) {
+    return NextResponse.json(
+      {
+        success: false,
+        message: "Parameter atau Slug ID harus angka!",
+      },
+      {
+        status: 400
+      }
+    )
+  }
+
   // cek apakah id ada atau tidak
   const product = await prisma.product.findUnique({
     where: {
@@ -84,16 +98,29 @@ export async function PUT(request: NextRequest, props: { params: Promise<{ id: s
   // buat data objek untuk isian
   const { name, price, image, category} = await request.json()
 
-  // check apakah nama produk sudah ada atau belum
-  const checkNameProduct = await prisma.product.findMany({
+  // validasi data yang diterima
+  if(!name || !price || !image || !category) {
+    return NextResponse.json(
+      {
+        success: false,
+        message: "Semua field harus diisi!",
+      },
+      {
+        status: 400
+      }
+    )
+  }
+
+  // check apakah nama produk sudah ada atau belum (kecuali produk dengan id yang sama)
+  const checkNameProduct = await prisma.product.findFirst({
     where: {
       name: name,
       NOT: {id: Number(params.id)}
     },
   })
 
-  // jika data nama produk ditemukan
-  if (checkNameProduct.length >= 1) {
+  // jika data nama produk ditemukan di produk lain
+  if (checkNameProduct) {
     return NextResponse.json(
       {
         success: false,
@@ -124,7 +151,7 @@ export async function PUT(request: NextRequest, props: { params: Promise<{ id: s
     {
       success: true,
       message: "Data produk berhasil di ubah!",
-      // data: product,
+      data: edit,
     },
     {
       status: 200,
@@ -132,4 +159,7 @@ export async function PUT(request: NextRequest, props: { params: Promise<{ id: s
   )
 
 }
+
+
+
 
