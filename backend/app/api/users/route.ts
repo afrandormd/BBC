@@ -124,7 +124,5 @@ export const  POST = async (request: NextResponse) => {
         status: 500,
       },
     )
-    
   }
-
 }
