@@ -46,5 +46,51 @@ export const DELETE = async (request: NextRequest, {params}: {params: {id: strin
       status: 200,
     }
   )
+}
 
+// service GET detail data user
+export const GET = async (request: NextRequest, {params}: {params: {id: string}}) => {
+  try {
+    // cek apakah data user ada 
+    const checkUser = await prisma.user.findUnique({
+      where: {
+        id: Number(params.id)
+      }
+    })
+
+    // jika data user tidak ditemukan 
+    if (!checkUser) {
+      return NextResponse.json(
+        {
+          success: false,
+          message: "Data User Tidak Ditemukan!"
+        },
+        {
+          status: 404,
+        }
+      )
+    }
+
+    // response jika data user ditemukan
+    return NextResponse.json(
+      {
+        success: true,
+        message: "Detail Data User",
+        data: checkUser,
+      },
+      {
+        status: 200,
+      }
+    ) 
+  } catch (error: any) {
+   return NextResponse.json(
+      {
+        success: false,
+        message: "Parameter slug harus angka!",
+      },
+      {
+        status: 400,
+      }
+    ) 
+  }
 }
