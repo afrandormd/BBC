@@ -23,9 +23,6 @@ export const GET = async (request: NextRequest) => {
   )
 }
 
-// valid role
-const VALID_ROLES = ["USER", "ADMIN"]
-
 // service POST (tambah data user)
 export const  POST = async (request: NextResponse) => {
   try {
@@ -77,7 +74,7 @@ export const  POST = async (request: NextResponse) => {
       return NextResponse.json(
         {
           success: false,
-          message: "Email sudah terdaftar!",
+          message: "Data User Gagal Disimpan! Email sudah terdaftar!",
         },
         {
           status: 400,
@@ -85,9 +82,8 @@ export const  POST = async (request: NextResponse) => {
       )
     }
 
-    // validasi role
-    
-    
+    // Hash password    
+
     // create data user
     const user = await prisma.user.create({
       data: {
@@ -110,6 +106,15 @@ export const  POST = async (request: NextResponse) => {
       }
     )
   } catch (error) {
+    return NextResponse.json(
+      {
+        success: false,
+        message: "Terjadi kesalahan Server!"
+      },
+      {
+        status: 500,
+      },
+    )
     
   }
 
