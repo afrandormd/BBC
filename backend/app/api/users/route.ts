@@ -3,6 +3,9 @@ import { NextRequest, NextResponse } from "next/server";
 
 // import prisma client
 import  prisma from "@/prisma/client";
+import { genSalt, hash } from "bcrypt-ts";
+
+// import bcrypt-ts
 
 
 // service GET ambil seluruh data users
@@ -83,13 +86,19 @@ export const  POST = async (request: NextResponse) => {
     }
 
     // Hash password    
+    const setBcryptAsync = async (real_password: string) => {
+      const salt = await genSalt(10)
+      const hash_password = await hash(real_password, salt)
+      return hash_password;
+    }
+    
 
     // create data user
     const user = await prisma.user.create({
       data: {
         name: name,
         email: email,
-        password: password,
+        password: await setBcryptAsync(password),
         role: role,
       }
     })
