@@ -136,3 +136,11 @@ return (
     </div>
   );
 }
+
+interface DashboardLinkCardProps {
+  href: string;
+  icon: React.ElementType;
+  title: string;
+  description: string;
+  disabled?: boolean;
+}
