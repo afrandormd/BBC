@@ -12,7 +12,6 @@ import { fetchNewsItemsAction } from '@/app/actions/news';
 import { fetchArticlesAction } from '@/app/actions/articles';
 import { useToast } from '@/hooks/use-toast';
 
-
 export default function DashboardOverviewPage() {
   const [imageCount, setImageCount] = useState<number | null>(null);
   const [testimonialCount, setTestimonialCount] = useState<number | null>(null);
@@ -58,7 +57,7 @@ export default function DashboardOverviewPage() {
     loadStats();
   }, [toast]);
 
-  return (
+return (
     <div className="space-y-8">
       <Card className="shadow-lg">
         <CardHeader>
@@ -111,7 +110,7 @@ export default function DashboardOverviewPage() {
         </CardContent>
       </Card>
 
-      <Card>
+        <Card>
         <CardHeader>
           <CardTitle>Quick Stats</CardTitle>
           <CardDescription>A brief overview of your content.</CardDescription>
