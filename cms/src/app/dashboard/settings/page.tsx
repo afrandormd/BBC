@@ -89,4 +89,58 @@ export default function SettingsPage() {
         </CardContent>
       </Card>
 
+      <Card className="shadow-md">
+        <CardHeader>
+            <div className="flex items-center space-x-3 mb-1">
+                <BellRing className="h-7 w-7 text-primary" />
+                <CardTitle className="text-xl">Notifications</CardTitle>
+            </div>
+            <CardDescription>Configure your notification preferences.</CardDescription>
+        </CardHeader>
+        <CardContent className="space-y-4">
+            <SettingItem icon={MailOpen} label="Email Notifications">
+              <Switch
+                id="email-notifications"
+                checked={isEmailNotifications}
+                onCheckedChange={setIsEmailNotifications}
+                onClick={() => setTimeout(() => handleNotImplemented("Email Notifications toggle"),0)}
+              />
+            </SettingItem>
+            <SettingItem icon={Smartphone} label="Push Notifications">
+              <Switch
+                id="push-notifications"
+                checked={isPushNotifications}
+                onCheckedChange={setIsPushNotifications}
+                onClick={() => setTimeout(() => handleNotImplemented("Push Notifications toggle"),0)}
+              />
+            </SettingItem>
+            <SettingItem icon={Volume2} label="Notification Sound">
+              <Select defaultValue="default" onValueChange={() => handleNotImplemented("Notification Sound selection")}>
+                <SelectTrigger className="w-[180px] h-9">
+                  <SelectValue placeholder="Select sound" />
+                </SelectTrigger>
+                <SelectContent>
+                  <SelectItem value="default">Default</SelectItem>
+                  <SelectItem value="chime">Chime</SelectItem>
+                  <SelectItem value="alert">Alert</SelectItem>
+                  <SelectItem value="none">None</SelectItem>
+                </SelectContent>
+              </Select>
+            </SettingItem>
+            <SettingItem icon={BellOff} label="Mute All Notifications">
+              <Switch
+                id="mute-all"
+                checked={isMuteAll}
+                onCheckedChange={setIsMuteAll}
+                onClick={() => setTimeout(() => handleNotImplemented("Mute All Notifications toggle"),0)}
+              />
+            </SettingItem>
+        </CardContent>
+      </Card>
+      <p className="mt-8 text-sm text-muted-foreground text-center">
+        Many settings here are placeholders for demonstration. Full functionality would require backend integration.
+      </p>
+    </div>
+  );
+}
       
