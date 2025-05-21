@@ -144,3 +144,35 @@ interface DashboardLinkCardProps {
   description: string;
   disabled?: boolean;
 }
+
+function DashboardLinkCard({ href, icon: Icon, title, description, disabled }: DashboardLinkCardProps) {
+  return (
+    <Link href={href} passHref legacyBehavior={true}>
+      <a className={`block p-1 ${disabled ? 'pointer-events-none' : ''}`}>
+        <Card className={`hover:shadow-md transition-shadow h-full ${disabled ? 'opacity-50 bg-muted' : ''}`}>
+          <CardHeader className="flex flex-row items-center justify-between space-y-0 pb-2">
+            <CardTitle className="text-base font-medium">{title}</CardTitle>
+            <Icon className="h-5 w-5 text-muted-foreground" />
+          </CardHeader>
+          <CardContent>
+            <p className="text-xs text-muted-foreground">{description}</p>
+          </CardContent>
+        </Card>
+      </a>
+    </Link>
+  );
+}
+
+interface StatCardProps {
+  title: string;
+  value?: string;
+  valueContent?: React.ReactNode;
+}
+function StatCard({ title, value, valueContent }: StatCardProps) {
+  return (
+    <Card className="p-4">
+      <p className="text-xs font-medium text-muted-foreground">{title}</p>
+      {valueContent ? <div className="mt-1">{valueContent}</div> : <p className="text-2xl font-bold">{value}</p>}
+    </Card>
+  )
+}
