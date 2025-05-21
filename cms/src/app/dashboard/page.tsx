@@ -64,3 +64,48 @@ return (
           <CardTitle className="text-3xl">Welcome to Askhajaya Dashboard</CardTitle>
           <CardDescription>Manage your application's content and settings from here.</CardDescription>
         </CardHeader>
+        <CardContent>
+          <p className="mb-6">
+            Use the sidebar navigation to access different management sections of your application.
+            Here are some quick links to get you started:
+          </p>
+          <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-4">
+            <DashboardLinkCard
+              href="/dashboard/images"
+              icon={Image}
+              title="Image Management"
+              description="Upload, view, and manage your images."
+            />
+            <DashboardLinkCard
+              href="/dashboard/testimonials"
+              icon={MessageSquare}
+              title="Testimonials"
+              description="Add and organize customer testimonials."
+            />
+            <DashboardLinkCard
+              href="/dashboard/news"
+              icon={Newspaper}
+              title="News Management"
+              description="Create and manage news items."
+            />
+            <DashboardLinkCard
+              href="/dashboard/articles"
+              icon={FileText}
+              title="Article Management"
+              description="Write and publish articles."
+            />
+             <DashboardLinkCard
+              href="/dashboard/settings"
+              icon={Settings}
+              title="Application Settings"
+              description="Configure application preferences."
+            />
+             <DashboardLinkCard
+              href="/dashboard/analytics"
+              icon={BarChart3}
+              title="Analytics"
+              description="View application content statistics."
+            />
+          </div>
+        </CardContent>
+      </Card>
