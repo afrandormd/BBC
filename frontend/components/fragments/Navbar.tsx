@@ -23,7 +23,7 @@ const Navbar = () => {
       <nav className="bg-gradient-to-l from-[#4F2F16] to-[#FFCC33] fixed top-0 left-0 w-full z-50">
         <div className="px-4 mx-auto max-w-7xl sm:px-6 lg:px-8">
           <div className="flex items-center justify-between h-16">
-           {/* Logo */}
+            {/* Logo */}
             <div className="flex items-center">
               <div className="flex-shrink-0">
                 <Link href="/" className="text-2xl font-bold text-white">
@@ -36,11 +36,31 @@ const Navbar = () => {
                 </Link>
               </div>
             </div>
-            
+            {/* Menu */}
+            <div className="hidden md:block">
+              <div className="flex items-center ml-4 space-x-4">
+                {links.map((link) => (
+                  <Link
+                    key={link.id}
+                    href={link.href}
+                    className="p-2 text-primary rounded-lg hover:bg-primary hover:text-secondary"
+                  >
+                    {link.text}
+                  </Link>
+                ))}
+                {/* tombol login */}
+                <Button
+                  asChild
+                  className="text-secondary font-semibold hover:bg-secondary hover:text-primary"
+                >
+                  <Link href="/login">Login</Link>
+                </Button>
+              </div>
             </div>
           </div>
+        </div>
         )
       </nav>
     </>
   );
-  };
+};
