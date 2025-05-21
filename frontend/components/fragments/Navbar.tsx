@@ -18,4 +18,16 @@ const Navbar = () => {
   const toggleNavbar = () => {
     setisClick(!isClick);
   };
+  return (
+    <>
+      <nav className="bg-gradient-to-l from-[#4F2F16] to-[#FFCC33] fixed top-0 left-0 w-full z-50">
+        <div className="px-4 mx-auto max-w-7xl sm:px-6 lg:px-8">
+          <div className="flex items-center justify-between h-16">
+           
+            </div>
+          </div>
+        )
+      </nav>
+    </>
+  );
   };
