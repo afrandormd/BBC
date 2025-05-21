@@ -45,4 +45,48 @@ export default function SettingsPage() {
           </div>
         </CardContent>
       </Card>
+
+      <Card className="shadow-md">
+        <CardHeader>
+            <div className="flex items-center space-x-3 mb-1">
+                <ShieldCheck className="h-7 w-7 text-primary" />
+                <CardTitle className="text-xl">Account & Security</CardTitle>
+            </div>
+            <CardDescription>Manage your account details and security settings.</CardDescription>
+        </CardHeader>
+        <CardContent className="space-y-4">
+            <SettingItem icon={KeyRound} label="Change Password">
+              <Button variant="outline" size="sm" onClick={() => handleNotImplemented("Change Password")}>Change Password</Button>
+            </SettingItem>
+            <SettingItem icon={Smartphone} label="Two-Factor Authentication">
+              <div className="flex items-center space-x-2">
+                <Switch
+                  id="two-factor"
+                  checked={isTwoFactorEnabled}
+                  onCheckedChange={setIsTwoFactorEnabled}
+                  onClick={() => setTimeout(() => handleNotImplemented("Two-Factor Authentication toggle"), 0)}
+                />
+                <Button variant="outline" size="sm" onClick={() => handleNotImplemented(isTwoFactorEnabled ? "Manage 2FA" : "Setup 2FA")}>
+                  {isTwoFactorEnabled ? "Manage" : "Setup"}
+                </Button>
+              </div>
+            </SettingItem>
+            <SettingItem icon={Activity} label="Login History & Active Sessions">
+              <Button variant="outline" size="sm" onClick={() => handleNotImplemented("View Login History")}>View History</Button>
+            </SettingItem>
+            <SettingItem icon={LinkIcon} label="Connected Accounts">
+              <div className="space-y-2">
+                <div className="flex items-center justify-between">
+                  <span className="flex items-center"><UserCircle className="mr-2 h-4 w-4 text-blue-500" /> Google</span>
+                  <Button variant="outline" size="sm" onClick={() => handleNotImplemented("Connect Google Account")}>Connect</Button>
+                </div>
+                <div className="flex items-center justify-between">
+                  <span className="flex items-center"><UserCircle className="mr-2 h-4 w-4 text-gray-700 dark:text-gray-300" /> GitHub</span>
+                  <Button variant="outline" size="sm" onClick={() => handleNotImplemented("Connect GitHub Account")}>Connect</Button>
+                </div>
+              </div>
+            </SettingItem>
+        </CardContent>
+      </Card>
+
       
