@@ -57,3 +57,10 @@ export default function DashboardOverviewPage() {
     loadStats();
   }, [toast]);
 
+return (
+    <div className="space-y-8">
+      <Card className="shadow-lg">
+        <CardHeader>
+          <CardTitle className="text-3xl">Welcome to Askhajaya Dashboard</CardTitle>
+          <CardDescription>Manage your application's content and settings from here.</CardDescription>
+        </CardHeader>
