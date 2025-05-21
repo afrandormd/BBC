@@ -143,4 +143,10 @@ export default function SettingsPage() {
     </div>
   );
 }
+
+interface SettingItemProps {
+  icon: React.ElementType;
+  label: string;
+  children: React.ReactNode;
+}
       
