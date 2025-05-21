@@ -11,3 +11,11 @@ const links = [
   { id: 3, href: "/allproducts", text: "Semua Produk" },
   { id: 4, href: "/about", text: "Tentang Kami" },
 ];
+const Navbar = () => {
+  // Menu Function
+  const [isClick, setisClick] = useState(false);
+
+  const toggleNavbar = () => {
+    setisClick(!isClick);
+  };
+  };
