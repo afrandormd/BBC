@@ -109,3 +109,30 @@ return (
           </div>
         </CardContent>
       </Card>
+
+        <Card>
+        <CardHeader>
+          <CardTitle>Quick Stats</CardTitle>
+          <CardDescription>A brief overview of your content.</CardDescription>
+        </CardHeader>
+        <CardContent className="grid grid-cols-2 md:grid-cols-4 gap-4">
+          {isLoadingStats ? (
+            <>
+              <StatCard title="Total Images" valueContent={<Loader2 className="h-5 w-5 animate-spin text-muted-foreground" />} />
+              <StatCard title="Total Testimonials" valueContent={<Loader2 className="h-5 w-5 animate-spin text-muted-foreground" />} />
+              <StatCard title="Total News" valueContent={<Loader2 className="h-5 w-5 animate-spin text-muted-foreground" />} />
+              <StatCard title="Total Articles" valueContent={<Loader2 className="h-5 w-5 animate-spin text-muted-foreground" />} />
+            </>
+          ) : (
+            <>
+              <StatCard title="Total Images" value={imageCount !== null ? imageCount.toString() : "N/A"} />
+              <StatCard title="Total Testimonials" value={testimonialCount !== null ? testimonialCount.toString() : "N/A"} />
+              <StatCard title="Total News" value={newsCount !== null ? newsCount.toString() : "N/A"} />
+              <StatCard title="Total Articles" value={articleCount !== null ? articleCount.toString() : "N/A"} />
+            </>
+          )}
+        </CardContent>
+      </Card>
+    </div>
+  );
+}
