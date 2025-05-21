@@ -149,4 +149,16 @@ interface SettingItemProps {
   label: string;
   children: React.ReactNode;
 }
+
+function SettingItem({ icon: Icon, label, children }: SettingItemProps) {
+  return (
+    <div className="flex items-center justify-between p-3 rounded-md border hover:bg-muted/50 transition-colors">
+      <div className="flex items-center">
+        <Icon className="mr-3 h-5 w-5 text-muted-foreground" />
+        <span className="text-sm font-medium">{label}</span>
+      </div>
+      {children}
+    </div>
+  );
+}
       
