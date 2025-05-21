@@ -23,7 +23,20 @@ const Navbar = () => {
       <nav className="bg-gradient-to-l from-[#4F2F16] to-[#FFCC33] fixed top-0 left-0 w-full z-50">
         <div className="px-4 mx-auto max-w-7xl sm:px-6 lg:px-8">
           <div className="flex items-center justify-between h-16">
-           
+           {/* Logo */}
+            <div className="flex items-center">
+              <div className="flex-shrink-0">
+                <Link href="/" className="text-2xl font-bold text-white">
+                  <Image
+                    src="/logo-askhajaya.png"
+                    alt="logo askha jaya"
+                    width={70}
+                    height={70}
+                  />
+                </Link>
+              </div>
+            </div>
+            
             </div>
           </div>
         )
