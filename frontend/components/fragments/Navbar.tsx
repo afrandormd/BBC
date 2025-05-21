@@ -98,7 +98,24 @@ const Navbar = () => {
             </div>
           </div>
         </div>
-        )
+         {/* Logic Toggler */}
+        {isClick && (
+          <div className="md:hidden">
+            <div className="px-2 pt-2 pb-3 space-y-1 sm:px-3">
+              {/* Menu */}
+              {links.map((link) => (
+                <Link
+                  key={link.id}
+                  href={link.href}
+                  className="block p-2 text-white rounded-lg hover:bg-secondary hover:text-primary"
+                >
+                  {link.text}
+                </Link>
+              ))}
+            </div>
+          </div>
+        
+        )}
       </nav>
     </>
   );
