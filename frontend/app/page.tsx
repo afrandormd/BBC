@@ -1,3 +1,10 @@
+import HeroSection from "@/components/fragments/HeroSection";
+
 export default function Home() {
-  return <></>;
+  return (
+    <>
+      {/* Bagian Hero Section */}
+      <HeroSection />
+    </>
+  );
 }
