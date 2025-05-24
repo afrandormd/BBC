@@ -1,3 +1,4 @@
+import FeaturedProductSection from "@/components/fragments/FeaturedProductSection";
 import HeroSection from "@/components/fragments/HeroSection";
 
 export default function Home() {
@@ -5,6 +6,8 @@ export default function Home() {
     <>
       {/* Bagian Hero Section */}
       <HeroSection />
+      {/* Bagian Product Section */}
+      <FeaturedProductSection />
     </>
   );
 }
