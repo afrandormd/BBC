@@ -3,15 +3,27 @@ import { NextRequest, NextResponse } from "next/server";
 
 // import prisma client
 import  prisma from "@/prisma/client";
-import { genSalt, hash } from "bcrypt-ts";
 
 // import bcrypt-ts
+import { genSalt, hash } from "bcrypt-ts";
+
+// import fungsi cek JWT
+import { checkJwt } from "../general";
+
+
 
 
 // service GET ambil seluruh data users
 export const GET = async (request: NextRequest) => {
+  // panggil fungsi cek token "checkJWT"
+  if (checkJwt(request)) {
+    return checkJwt(request)
+  }
+
   // get all users
   const users = await prisma.user.findMany(); 
+
+  // validasi jika data tidak ada
 
   // return response JSON
   return NextResponse.json(

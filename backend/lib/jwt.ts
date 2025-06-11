@@ -3,7 +3,7 @@ import jwt from 'jsonwebtoken';
 
 // buat konstanta JWT
 const JWT_KEY = "BBC";
-const JWT_EXPIRED = "10m"
+const JWT_EXPIRED = "30m"
 
 // buat interface
 export interface JwtInfo {
