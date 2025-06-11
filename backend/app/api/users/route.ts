@@ -39,8 +39,13 @@ export const GET = async (request: NextRequest) => {
 }
 
 // service POST (tambah data user)
-export const  POST = async (request: NextResponse) => {
+export const  POST = async (request: NextRequest) => {
   try {
+    // panggil fungsi cek token "checkJWT"
+    if (checkJwt(request)) {
+      return checkJwt(request)
+    }
+
     // get all request
     const {name, email, password, role} = await request.json()
 
