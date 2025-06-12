@@ -59,6 +59,11 @@ export const DELETE = async (request: NextRequest, {params}: {params: {id: strin
 // service GET detail data user
 export const GET = async (request: NextRequest, {params}: {params: {id: string}}) => {
   try {
+    // panggil fungsi cek token "checkJWT"
+    if(checkJwt(request)) {
+      return checkJwt(request)
+    }
+
     // cek apakah data user ada 
     const checkUser = await prisma.user.findUnique({
       where: {
