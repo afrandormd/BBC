@@ -7,8 +7,16 @@ import  prisma from "@/prisma/client";
 // import bcrypt-ts
 import { genSalt, hash } from "bcrypt-ts";
 
+// import fungsi cek JWT
+import { checkJwt } from "../../general";
+
 // Service DELETE data user
 export const DELETE = async (request: NextRequest, {params}: {params: {id: string}}) => {
+  // panggil fungsi cek token "checkJWT"
+  if(checkJwt(request)) {
+    return checkJwt(request)
+  }
+
   // cek apakah data user ada 
   const checkUser = await prisma.user.findUnique({
     where: {
