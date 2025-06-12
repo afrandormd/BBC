@@ -111,6 +111,11 @@ export const GET = async (request: NextRequest, {params}: {params: {id: string}}
 // Service PUT edit data user
 export async function PUT(request: NextRequest, props: { params: Promise<{ id: string }>}) {
 
+  // panggil fungsi cek token "checkJWT"
+  if(checkJwt(request)) {
+    return checkJwt(request)
+  }
+
   // get params id
   const params = await props.params
 
