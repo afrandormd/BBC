@@ -1,68 +1,73 @@
+
 'use server';
 
-import type { TestimonialItem, ServerActionResponse } from '@/types';
+import type { ArticleItem, ServerActionResponse } from '@/types';
 
-// let mockTestimonialStore: TestimonialItem[] = [];
+// let mockArticleStore: ArticleItem[] = [];
 
-export async function fetchTestimonialsAction(): Promise<ServerActionResponse<TestimonialItem[]>> {
-  console.log('Server Action: fetchTestimonialsAction');
-  await new Promise(resolve => setTimeout(resolve, 50)); // Reduced delay
-  // return { success: true, data: mockTestimonialStore };
+export async function fetchArticlesAction(): Promise<ServerActionResponse<ArticleItem[]>> {
+  console.log('Server Action: fetchArticlesAction');
+  await new Promise(resolve => setTimeout(resolve, 50)); // Simulate delay
+  // return { success: true, data: mockArticleStore };
   return { success: true, data: [] };
 }
 
-export async function addTestimonialAction(
-  newTestimonial: Omit<TestimonialItem, 'id' | 'createdAt'> & { createdAt?: Date }
-): Promise<ServerActionResponse<TestimonialItem>> {
-  console.log('Server Action: addTestimonialAction for author', newTestimonial.author);
-  await new Promise(resolve => setTimeout(resolve, 50)); // Reduced delay
+export async function addArticleAction(
+  newArticle: Omit<ArticleItem, 'id' | 'publishedAt'> & { publishedAt?: Date }
+): Promise<ServerActionResponse<ArticleItem>> {
+  console.log('Server Action: addArticleAction for title', newArticle.title);
+  await new Promise(resolve => setTimeout(resolve, 50));
 
-  const testimonialToSave: TestimonialItem = {
-    ...newTestimonial,
+  const articleToSave: ArticleItem = {
+    ...newArticle,
     id: crypto.randomUUID(),
-    createdAt: newTestimonial.createdAt || new Date(),
+    publishedAt: newArticle.publishedAt || new Date(),
+    tags: newArticle.tags || [],
   };
-
-  // mockTestimonialStore.unshift(testimonialToSave);
-  
-  console.log('Server Action: testimonial added successfully for', newTestimonial.author);
-  return { success: true, data: testimonialToSave };
+  // mockArticleStore.unshift(articleToSave);
+  console.log('Server Action: article added successfully for', newArticle.title);
+  return { success: true, data: articleToSave };
 }
 
-export async function updateTestimonialAction(
-  testimonialId: string,
-  updates: Pick<TestimonialItem, 'author' | 'quote'>
-): Promise<ServerActionResponse<TestimonialItem>> {
-  console.log('Server Action: updateTestimonialAction for ID', testimonialId);
-  await new Promise(resolve => setTimeout(resolve, 50)); // Reduced delay
+export async function updateArticleAction(
+  articleId: string,
+  updates: Partial<Omit<ArticleItem, 'id' | 'publishedAt'>>
+): Promise<ServerActionResponse<ArticleItem>> {
+  console.log('Server Action: updateArticleAction for ID', articleId);
+  await new Promise(resolve => setTimeout(resolve, 50));
 
-  // const testimonialIndex = mockTestimonialStore.findIndex(t => t.id === testimonialId);
-  // if (testimonialIndex === -1) {
-  //   return { success: false, error: "Testimonial not found or not authorized."};
+  // const articleIndex = mockArticleStore.findIndex(a => a.id === articleId);
+  // if (articleIndex === -1) {
+  //   return { success: false, error: "Article not found." };
   // }
-  // mockTestimonialStore[testimonialIndex] = { ...mockTestimonialStore[testimonialIndex], ...updates, createdAt: new Date(mockTestimonialStore[testimonialIndex].createdAt) };
-  // return { success: true, data: mockTestimonialStore[testimonialIndex] };
-
-  const mockUpdatedTestimonial: TestimonialItem = {
-    id: testimonialId,
-    author: updates.author,
-    quote: updates.quote,
-    createdAt: new Date(), // Or fetch existing createdAt if only updating
+  // mockArticleStore[articleIndex] = { 
+  //   ...mockArticleStore[articleIndex], 
+  //   ...updates, 
+  //   publishedAt: new Date(mockArticleStore[articleIndex].publishedAt) 
+  // };
+  // return { success: true, data: mockArticleStore[articleIndex] };
+   const mockUpdatedArticle: ArticleItem = {
+    id: articleId,
+    title: updates.title || `Article ${articleId.substring(0,4)}`,
+    content: updates.content || `Content for article ${articleId.substring(0,4)}`,
+    author: updates.author || 'Default Author',
+    category: updates.category || 'Default Category',
+    tags: updates.tags || [],
+    imageUrl: updates.imageUrl,
+    publishedAt: new Date(), // Or fetch existing publishedAt
   };
-  return { success: true, data: mockUpdatedTestimonial };
+  return { success: true, data: mockUpdatedArticle };
 }
 
-export async function deleteTestimonialAction(testimonialId: string): Promise<ServerActionResponse> {
-  console.log('Server Action: deleteTestimonialAction for ID', testimonialId);
-  await new Promise(resolve => setTimeout(resolve, 50)); // Reduced delay
+export async function deleteArticleAction(articleId: string): Promise<ServerActionResponse> {
+  console.log('Server Action: deleteArticleAction for ID', articleId);
+  await new Promise(resolve => setTimeout(resolve, 50));
 
-  // const initialLength = mockTestimonialStore.length;
-  // mockTestimonialStore = mockTestimonialStore.filter(t => t.id !== testimonialId);
-  // if (mockTestimonialStore.length === initialLength) {
-  //    return { success: false, error: "Testimonial not found." };
+  // const initialLength = mockArticleStore.length;
+  // mockArticleStore = mockArticleStore.filter(a => a.id !== articleId);
+  // if (mockArticleStore.length === initialLength) {
+  //    return { success: false, error: "Article not found." };
   // }
-  
-  console.log('Server Action: testimonial deletion successful for', testimonialId);
+  console.log('Server Action: article deletion successful for', articleId);
   return { success: true };
 }
-
