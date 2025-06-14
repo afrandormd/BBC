@@ -3,6 +3,7 @@ import { NextRequest, NextResponse } from "next/server";
 
 // import helpers prisma client
 import prisma from "@/prisma/client";
+import { checkJwt } from "../../general";
 
 // service GET detail data
 export async function GET(request: NextRequest, props: { params: Promise<{ id: string }> }) {
@@ -56,7 +57,11 @@ export async function GET(request: NextRequest, props: { params: Promise<{ id: s
 }
 
 // service PUT (update) data product
-export async function PUT(request: NextRequest, props: { params: Promise<{ id: string }>}) {
+export const PUT = async (request: NextRequest, props: { params: Promise<{ id: string }>}) => {
+  // panggil fungsi cek token "checkJWT"
+  if (checkJwt(request)) {
+    return checkJwt(request)
+  }
 
   // get params id
   const params = await props.params
