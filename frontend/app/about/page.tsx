@@ -14,6 +14,44 @@ import {
 } from "lucide-react";
 
 const AboutPage = () => {
+  const values = [
+    {
+      icon: <CheckCircle className="h-8 w-8 text-amber-800" />,
+      title: "Kualitas Terbaik",
+      description:
+        "Kami berkomitmen untuk selalu menyediakan produk dengan kualitas terbaik untuk kepuasan pelanggan.",
+    },
+    {
+      icon: <Users className="h-8 w-8 text-amber-800" />,
+      title: "Pelayanan Prima",
+      description:
+        "Mengutamakan pelayanan yang ramah dan profesional kepada setiap pelanggan.",
+    },
+    {
+      icon: <Award className="h-8 w-8 text-amber-800" />,
+      title: "Inovasi Berkelanjutan",
+      description:
+        "Terus berinovasi dalam produk dan layanan untuk memenuhi kebutuhan pelanggan yang berkembang.",
+    },
+    {
+      icon: <Truck className="h-8 w-8 text-amber-800" />,
+      title: "Pengiriman Tepat Waktu",
+      description:
+        "Menjamin pengiriman produk tepat waktu ke seluruh pelanggan kami.",
+    },
+    {
+      icon: <HeartHandshake className="h-8 w-8 text-amber-800" />,
+      title: "Kepercayaan Pelanggan",
+      description:
+        "Membangun dan menjaga kepercayaan pelanggan melalui transparansi dan integritas.",
+    },
+    {
+      icon: <Leaf className="h-8 w-8 text-amber-800" />,
+      title: "Tanggung Jawab Lingkungan",
+      description:
+        "Berkomitmen untuk menjalankan bisnis dengan cara yang ramah lingkungan dan berkelanjutan.",
+    },
+  ];
   return (
     <div className="container mx-auto px-4 py-12">
       {/* Hero Section */}
@@ -51,6 +89,26 @@ const AboutPage = () => {
             <li>• Mengembangkan inovasi dalam setiap aspek bisnis</li>
             <li>• Berkontribusi positif kepada masyarakat</li>
           </ul>
+        </div>
+      </div>
+      {/* Company Values */}
+      <div className="mb-16">
+        <h2 className="text-3xl font-bold text-center mb-12 text-amber-900">
+          Nilai-Nilai Perusahaan
+        </h2>
+        <div className="grid md:grid-cols-3 gap-8">
+          {values.map((value, index) => (
+            <div
+              key={index}
+              className="text-center p-6 border border-amber-200 rounded-lg hover:shadow-lg transition-shadow"
+            >
+              <div className="flex justify-center mb-4">{value.icon}</div>
+              <h3 className="text-xl font-bold mb-3 text-amber-900">
+                {value.title}
+              </h3>
+              <p className="text-amber-700">{value.description}</p>
+            </div>
+          ))}
         </div>
       </div>
     </div>
