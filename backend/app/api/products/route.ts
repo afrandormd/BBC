@@ -1,8 +1,9 @@
 // import next request and response
-import { NextResponse } from "next/server";
+import { NextRequest, NextResponse } from "next/server";
 
 // import prisma client
 import prisma from "@/prisma/client";
+import { checkJwt } from "../general";
 
 // fungsi ambil seluruh data products
 export async function GET() {
@@ -23,7 +24,12 @@ export async function GET() {
 }
 
 // fungsi tambah data products
-export async function POST(request: any) {
+export const POST = async (request: NextRequest) => {
+  // panggil fungsi cek token "checkJWT"
+  if (checkJwt(request)) {
+    return checkJwt(request)
+  }
+
   // get all request
   const { name, price, image, description, category} = await request.json()
 
