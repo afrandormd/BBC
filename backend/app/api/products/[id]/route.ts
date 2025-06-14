@@ -168,7 +168,11 @@ export const PUT = async (request: NextRequest, props: { params: Promise<{ id: s
 
 
 // service DELETE data products 
-export async function DELETE(request: NextRequest, props: { params: Promise<{ id: string }> }) {
+export const DELETE = async (request: NextRequest, props: { params: Promise<{ id: string }> }) => {
+  // panggil fungsi cek token "checkJWT"
+  if (checkJwt(request)) {
+    return checkJwt(request)
+  }
 
   // get params id
   const params = await props.params
