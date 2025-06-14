@@ -282,6 +282,46 @@ const AboutPage = () => {
           </div>
         </div>
       </div>
+      {/* Community Involvement */}
+      <div className="mb-16">
+        <h2 className="text-3xl font-bold text-center mb-8 text-amber-900">
+          Keterlibatan Komunitas
+        </h2>
+        <div className="grid md:grid-cols-2 gap-8">
+          <div>
+            <Image
+              src="/placeholder.svg?height=300&width=400&text=Community+Event"
+              alt="Community Event"
+              width={400}
+              height={300}
+              className="rounded-lg mb-4"
+            />
+            <h3 className="text-xl font-bold mb-2 text-amber-800">
+              Program Pemberdayaan UMKM
+            </h3>
+            <p className="text-amber-700">
+              Kami aktif mendukung pertumbuhan UMKM lokal melalui program
+              pelatihan dan pendampingan bisnis.
+            </p>
+          </div>
+          <div>
+            <Image
+              src="/placeholder.svg?height=300&width=400&text=CSR+Activity"
+              alt="CSR Activity"
+              width={400}
+              height={300}
+              className="rounded-lg mb-4"
+            />
+            <h3 className="text-xl font-bold mb-2 text-amber-800">
+              Kegiatan Sosial
+            </h3>
+            <p className="text-amber-700">
+              Askha Jaya secara rutin mengadakan kegiatan sosial, termasuk donor
+              darah dan bantuan bencana alam.
+            </p>
+          </div>
+        </div>
+      </div>
     </div>
   );
 };
