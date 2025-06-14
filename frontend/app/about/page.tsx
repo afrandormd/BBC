@@ -52,6 +52,29 @@ const AboutPage = () => {
         "Berkomitmen untuk menjalankan bisnis dengan cara yang ramah lingkungan dan berkelanjutan.",
     },
   ];
+  const testimonials = [
+    {
+      name: "Budi Santoso",
+      role: "Pelanggan Setia",
+      content:
+        "Askha Jaya selalu menjadi pilihan utama saya untuk belanja kebutuhan sehari-hari. Produknya berkualitas dan pelayanannya luar biasa!",
+      rating: 5,
+    },
+    {
+      name: "Siti Rahayu",
+      role: "Pengusaha UMKM",
+      content:
+        "Sebagai mitra bisnis, Askha Jaya sangat membantu perkembangan usaha saya. Mereka tidak hanya menjual produk, tapi juga memberikan dukungan yang luar biasa.",
+      rating: 5,
+    },
+    {
+      name: "Andi Prasetyo",
+      role: "Konsumen Baru",
+      content:
+        "Baru-baru ini saya mulai berbelanja di Askha Jaya dan saya sangat terkesan. Harga bersaing dan kualitas produk sangat baik.",
+      rating: 4,
+    },
+  ];
   return (
     <div className="container mx-auto px-4 py-12">
       {/* Hero Section */}
@@ -198,6 +221,35 @@ const AboutPage = () => {
                 Nama Anggota {member}
               </h3>
               <p className="text-amber-700">Posisi di Perusahaan</p>
+            </div>
+          ))}
+        </div>
+      </div>
+      {/* Testimonials */}
+      <div className="mb-16">
+        <h2 className="text-3xl font-bold text-center mb-12 text-amber-900">
+          Apa Kata Mereka
+        </h2>
+        <div className="grid md:grid-cols-3 gap-8">
+          {testimonials.map((testimonial, index) => (
+            <div key={index} className="bg-amber-50 p-6 rounded-lg">
+              <p className="text-amber-700 mb-4">
+                &quot;{testimonial.content}&quot;
+              </p>
+              <div className="flex items-center justify-between">
+                <div>
+                  <p className="font-bold text-amber-900">{testimonial.name}</p>
+                  <p className="text-amber-600 text-sm">{testimonial.role}</p>
+                </div>
+                <div className="flex">
+                  {[...Array(testimonial.rating)].map((_, i) => (
+                    <Star
+                      key={i}
+                      className="h-5 w-5 text-amber-500 fill-current"
+                    />
+                  ))}
+                </div>
+              </div>
             </div>
           ))}
         </div>
