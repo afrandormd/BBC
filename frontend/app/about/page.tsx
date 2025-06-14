@@ -28,6 +28,31 @@ const AboutPage = () => {
           berkualitas dan pelayanan terbaik.
         </p>
       </div>
+      {/* Vision & Mission */}
+      <div className="flex flex-col gap-8 mb-16">
+        <div className="bg-amber-50 p-8 rounded-lg">
+          <div className="flex items-center gap-4 mb-4">
+            <Target className="h-8 w-8 text-amber-800" />
+            <h2 className="text-2xl font-bold text-amber-900">Visi Kami</h2>
+          </div>
+          <p className="text-amber-700">
+            Menjadi perusahaan terdepan dalam industri dengan mengutamakan
+            kepuasan pelanggan dan inovasi berkelanjutan.
+          </p>
+        </div>
+        <div className="bg-amber-50 p-8 rounded-lg">
+          <div className="flex items-center gap-4 mb-4">
+            <History className="h-8 w-8 text-amber-800" />
+            <h2 className="text-2xl font-bold text-amber-900">Misi Kami</h2>
+          </div>
+          <ul className="text-amber-700 space-y-2">
+            <li>• Menyediakan produk berkualitas tinggi</li>
+            <li>• Memberikan pelayanan terbaik kepada pelanggan</li>
+            <li>• Mengembangkan inovasi dalam setiap aspek bisnis</li>
+            <li>• Berkontribusi positif kepada masyarakat</li>
+          </ul>
+        </div>
+      </div>
     </div>
   );
 };
