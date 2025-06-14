@@ -322,6 +322,17 @@ const AboutPage = () => {
           </div>
         </div>
       </div>
+      {/* Call to Action */}
+      <div className="text-center bg-amber-800 text-white p-12 rounded-lg">
+        <h2 className="text-3xl font-bold mb-4">Bergabung dengan Kami</h2>
+        <p className="mb-8 max-w-2xl mx-auto">
+          Mari menjadi bagian dari perjalanan kami dalam memberikan layanan
+          terbaik untuk masyarakat.
+        </p>
+        <button className="bg-white text-amber-800 px-8 py-3 rounded-lg font-bold hover:bg-amber-50 transition-colors">
+          Hubungi Kami
+        </button>
+      </div>
     </div>
   );
 };
