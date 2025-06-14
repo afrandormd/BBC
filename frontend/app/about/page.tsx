@@ -111,6 +111,72 @@ const AboutPage = () => {
           ))}
         </div>
       </div>
+
+      {/* History Section */}
+      <div className="bg-amber-50 p-8 rounded-lg mb-16">
+        <h2 className="text-3xl font-bold text-center mb-8 text-amber-900">
+          Perjalanan Kami
+        </h2>
+        <div className="max-w-3xl mx-auto">
+          <div className="space-y-8">
+            <div className="flex gap-4">
+              <div className="flex-none">
+                <div className="w-4 h-4 rounded-full bg-amber-800 mt-2"></div>
+              </div>
+              <div>
+                <h3 className="text-xl font-bold mb-2 text-amber-900">2010</h3>
+                <p className="text-amber-700">
+                  Pembukaan toko pertama Askha Jaya
+                </p>
+              </div>
+            </div>
+            <div className="flex gap-4">
+              <div className="flex-none">
+                <div className="w-4 h-4 rounded-full bg-amber-800 mt-2"></div>
+              </div>
+              <div>
+                <h3 className="text-xl font-bold mb-2 text-amber-900">2015</h3>
+                <p className="text-amber-700">
+                  Ekspansi dengan membuka cabang kedua
+                </p>
+              </div>
+            </div>
+            <div className="flex gap-4">
+              <div className="flex-none">
+                <div className="w-4 h-4 rounded-full bg-amber-800 mt-2"></div>
+              </div>
+              <div>
+                <h3 className="text-xl font-bold mb-2 text-amber-900">2018</h3>
+                <p className="text-amber-700">
+                  Peluncuran program loyalitas pelanggan
+                </p>
+              </div>
+            </div>
+            <div className="flex gap-4">
+              <div className="flex-none">
+                <div className="w-4 h-4 rounded-full bg-amber-800 mt-2"></div>
+              </div>
+              <div>
+                <h3 className="text-xl font-bold mb-2 text-amber-900">2020</h3>
+                <p className="text-amber-700">
+                  Implementasi sistem manajemen inventori terbaru
+                </p>
+              </div>
+            </div>
+            <div className="flex gap-4">
+              <div className="flex-none">
+                <div className="w-4 h-4 rounded-full bg-amber-800 mt-2"></div>
+              </div>
+              <div>
+                <h3 className="text-xl font-bold mb-2 text-amber-900">2023</h3>
+                <p className="text-amber-700">
+                  Pengembangan platform digital dan layanan online
+                </p>
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
     </div>
   );
 };
