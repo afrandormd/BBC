@@ -177,6 +177,31 @@ const AboutPage = () => {
           </div>
         </div>
       </div>
+      {/* Team Section */}
+      <div className="mb-16">
+        <h2 className="text-3xl font-bold text-center mb-12 text-amber-900">
+          Tim Kami
+        </h2>
+        <div className="grid md:grid-cols-3 gap-8">
+          {[1, 2, 3].map((member) => (
+            <div key={member} className="text-center">
+              <div className="w-32 h-32 rounded-full overflow-hidden mx-auto mb-4">
+                <Image
+                  src={`/placeholder.svg?height=128&width=128&text=Team+Member+${member}`}
+                  alt={`Team Member ${member}`}
+                  width={128}
+                  height={128}
+                  className="object-cover"
+                />
+              </div>
+              <h3 className="text-xl font-bold text-amber-900">
+                Nama Anggota {member}
+              </h3>
+              <p className="text-amber-700">Posisi di Perusahaan</p>
+            </div>
+          ))}
+        </div>
+      </div>
     </div>
   );
 };
