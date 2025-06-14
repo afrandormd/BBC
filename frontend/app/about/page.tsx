@@ -254,6 +254,34 @@ const AboutPage = () => {
           ))}
         </div>
       </div>
+      {/* Achievements */}
+      <div className="bg-amber-50 p-8 rounded-lg mb-16">
+        <h2 className="text-3xl font-bold text-center mb-8 text-amber-900">
+          Pencapaian Kami
+        </h2>
+        <div className="grid md:grid-cols-2 gap-8">
+          <div>
+            <h3 className="text-xl font-bold mb-4 text-amber-800">
+              Penghargaan
+            </h3>
+            <ul className="list-disc list-inside text-amber-700 space-y-2">
+              <li>Penghargaan Pelayanan Pelanggan Terbaik 2022</li>
+              <li>Top Brand Award 2021</li>
+              <li>Penghargaan Inovasi Bisnis 2020</li>
+            </ul>
+          </div>
+          <div>
+            <h3 className="text-xl font-bold mb-4 text-amber-800">
+              Sertifikasi
+            </h3>
+            <ul className="list-disc list-inside text-amber-700 space-y-2">
+              <li>ISO 9001:2015 - Manajemen Mutu</li>
+              <li>ISO 14001:2015 - Manajemen Lingkungan</li>
+              <li>OHSAS 18001 - Kesehatan dan Keselamatan Kerja</li>
+            </ul>
+          </div>
+        </div>
+      </div>
     </div>
   );
 };
