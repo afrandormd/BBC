@@ -1,5 +1,7 @@
 # 🧩 Fullstack Monorepo Project (Next.js + Prisma + MySQL + CMS)
 
+> Documentasi Backend: [Dokumentasi Backend](https://documenter.getpostman.com/view/34054382/2sB2qXjNW1)
+
 Proyek Website ini terdiri dari:
 
 - 🔧 **Backend**: API menggunakan Next.js, Prisma ORM dan MySQL
