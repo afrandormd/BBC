@@ -1,57 +1,44 @@
 
+
 export interface User {
-  id: string; // Typically string (e.g., CUID, UUID) or number from DB
-  username: string;
-  email: string;
-  displayName: string;
-  role: 'admin' | 'author' | 'operator';
-  // passwordHash?: string; // Only on server, never send to client
-  createdAt?: Date;
-  updatedAt?: Date;
-}
-
-export interface ImageItem {
-  id: string; // Typically string or number from DB
-  dataUri: string; // For display; consider storing URL if files are hosted
+  id: string | number; 
   name: string;
-  price: string; // e.g., "150000" or "Not set"
-  uploadedAt: Date;
-  // userId?: string; // Optional: if images are associated with users
+  email: string;
+  role: 'ADMIN' | 'AUTHOR' | 'OPERATOR' | 'USER'; // Added 'USER' from API docs
+  createdAt?: Date | string;
+  updatedAt?: Date | string;
 }
 
-export interface TestimonialItem {
-  id: string; // Typically string or number from DB
-  author: string;
-  quote: string;
-  createdAt: Date;
-  // userId?: string; // Optional: if testimonials are associated with users
-}
-
-export interface NewsItem {
+export interface MediaItem {
   id: string;
-  title: string;
-  content: string;
-  author: string;
-  category: string;
-  publishedAt: Date;
-  imageUrl?: string; // Optional image for the news item
+  url: string; 
+  name: string;
+  altText?: string;
+  uploadedAt: Date | string;
 }
 
-export interface ArticleItem {
-  id: string;
-  title: string;
-  content: string; // Could be markdown or rich text
-  author: string;
+export interface ProductItem {
+  id: string | number;
+  name: string;
+  price: number;
+  description?: string | null;
+  image: string;
   category: string;
-  tags?: string[];
-  publishedAt: Date;
-  imageUrl?: string; // Optional image for the article
+  createdAt: Date | string;
+  updatedAt: Date | string;
 }
 
-// Generic type for server action responses
+// Represents the API's top-level response structure
+export type ApiResponse<T> = {
+  success: boolean;
+  message?: string;
+  data?: T;
+  token?: string; // For JWT response
+};
+
+// Represents the response from a Server Action
 export type ServerActionResponse<T = null> = {
   success: boolean;
   data?: T;
-  error?: string | { [key: string]: string[] } | null; // Can be a simple string or Zod-like error object
+  error?: string | { [key: string]: string[] } | null;
 };
-

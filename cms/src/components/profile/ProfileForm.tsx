@@ -17,27 +17,28 @@ import { Save, Loader2, UserCircle, Mail, Shield, KeyRound } from 'lucide-react'
 import { useAuth } from '@/contexts/AuthContext';
 import type { User } from '@/types';
 
-const availableRoles: User['role'][] = ['admin', 'author', 'operator'];
+const availableRoles: User['role'][] = ['ADMIN', 'AUTHOR', 'OPERATOR'];
 
 export function ProfileForm() {
   const { user, updateUserContext, isLoading: authLoading } = useAuth();
-  const [displayName, setDisplayName] = useState('');
+  const [name, setName] = useState('');
   const [email, setEmail] = useState('');
-  const [selectedRole, setSelectedRole] = useState<User['role']>('operator');
-  const [currentPassword, setCurrentPassword] = useState('');
+  const [selectedRole, setSelectedRole] = useState<User['role']>('OPERATOR');
   const [isLoading, setIsLoading] = useState(false);
   const { toast } = useToast();
 
+  const [initialName, setInitialName] = useState('');
   const [initialEmail, setInitialEmail] = useState('');
-  const [initialRole, setInitialRole] = useState<User['role']>('operator');
+  const [initialRole, setInitialRole] = useState<User['role']>('OPERATOR');
 
   useEffect(() => {
     if (user) {
-      setDisplayName(user.displayName || '');
+      setName(user.name || '');
       setEmail(user.email || '');
-      setSelectedRole(user.role || 'operator');
+      setSelectedRole(user.role || 'OPERATOR');
+      setInitialName(user.name || '');
       setInitialEmail(user.email || '');
-      setInitialRole(user.role || 'operator');
+      setInitialRole(user.role || 'OPERATOR');
     }
   }, [user]);
 
@@ -45,39 +46,37 @@ export function ProfileForm() {
     event.preventDefault();
     if (!user) return;
 
-    const emailChanged = email !== initialEmail;
-    const roleChanged = selectedRole !== initialRole;
-    const displayNameChanged = displayName !== user.displayName;
+    const updates: Partial<Pick<User, 'name' | 'email' | 'role'>> = {};
+    if (name !== initialName) updates.name = name;
+    if (email !== initialEmail) updates.email = email;
+    if (selectedRole !== initialRole) updates.role = selectedRole;
 
-    if ((emailChanged || roleChanged || displayNameChanged) && !currentPassword.trim()) {
-      toast({
-        title: "Password Required",
-        description: "Please enter your current password to save changes to email, role, or display name.",
-        variant: "destructive",
-      });
+    if (Object.keys(updates).length === 0) {
+      toast({ title: "No Changes", description: "You haven't made any changes to your profile." });
       return;
     }
 
     setIsLoading(true);
 
-    // Simulate API call to update profile
-    // In a real app, you would send currentPassword for verification
-    // and then send displayName, email, selectedRole to the server.
-
-    await new Promise(resolve => setTimeout(resolve, 700)); // Simulate network delay
-
-    updateUserContext({ displayName, email, role: selectedRole });
+    const updatedUser = await updateUserContext(updates);
     
-    // Update initial values after successful save
-    setInitialEmail(email);
-    setInitialRole(selectedRole);
-    setCurrentPassword(''); // Clear password field
-
-    toast({
-      title: "Profile Updated",
-      description: "Your profile information has been updated successfully.",
-    });
     setIsLoading(false);
+
+    if (updatedUser) {
+        toast({
+          title: "Profile Updated",
+          description: "Your profile information has been updated successfully.",
+        });
+        setInitialName(updatedUser.name);
+        setInitialEmail(updatedUser.email);
+        setInitialRole(updatedUser.role);
+    } else {
+        toast({
+            title: "Update Failed",
+            description: "Could not save your profile changes. Please try again.",
+            variant: "destructive",
+        });
+    }
   };
 
   if (authLoading || !user) {
@@ -91,16 +90,16 @@ export function ProfileForm() {
   return (
     <form onSubmit={handleSubmit} className="space-y-6">
       <div className="space-y-2">
-        <Label htmlFor="displayName" className="flex items-center">
+        <Label htmlFor="name" className="flex items-center">
           <UserCircle className="mr-2 h-4 w-4 text-muted-foreground" />
-          Display Name
+          Name
         </Label>
         <Input
-          id="displayName"
+          id="name"
           type="text"
-          placeholder="Enter your display name"
-          value={displayName}
-          onChange={(e) => setDisplayName(e.target.value)}
+          placeholder="Enter your full name"
+          value={name}
+          onChange={(e) => setName(e.target.value)}
         />
       </div>
 
@@ -130,35 +129,12 @@ export function ProfileForm() {
           <SelectContent>
             {availableRoles.map(r => (
               <SelectItem key={r} value={r}>
-                {r.charAt(0).toUpperCase() + r.slice(1)}
+                {r.charAt(0).toUpperCase() + r.slice(1).toLowerCase()}
               </SelectItem>
             ))}
           </SelectContent>
         </Select>
-        <p className="text-xs text-muted-foreground">
-          Profile AkhaJaya in Demand
-        </p>
       </div>
-      
-      {(email !== initialEmail || selectedRole !== initialRole || displayName !== (user?.displayName || '')) && (
-        <div className="space-y-2 p-4 border border-dashed rounded-md bg-muted/50">
-            <Label htmlFor="currentPassword" className="flex items-center">
-            <KeyRound className="mr-2 h-4 w-4 text-muted-foreground" />
-            Current Password (to save changes)
-            </Label>
-            <Input
-            id="currentPassword"
-            type="password"
-            placeholder="Enter current password to confirm"
-            value={currentPassword}
-            onChange={(e) => setCurrentPassword(e.target.value)}
-            />
-            <p className="text-xs text-muted-foreground">
-                Belum TERHUBUNG DENGAN BACKEND
-            </p>
-        </div>
-      )}
-
 
       <Button type="submit" className="w-full sm:w-auto" disabled={isLoading}>
         {isLoading ? (
