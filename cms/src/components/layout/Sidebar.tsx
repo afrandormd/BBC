@@ -15,16 +15,14 @@ import {
 } from '@/components/ui/sidebar';
 import { Button } from '@/components/ui/button';
 import { ScrollArea } from '@/components/ui/scroll-area';
-import { LayoutDashboard, Image, MessageSquare, User, Settings, LogOut, PanelLeftClose, PanelLeftOpen, BarChart3, Newspaper, FileText } from 'lucide-react'; // Added Newspaper, FileText
+import { LayoutDashboard, User, Settings, LogOut, PanelLeftClose, PanelLeftOpen, BarChart3, LibraryBig, Package } from 'lucide-react';
 import { useAuth } from '@/contexts/AuthContext';
 import { cn } from '@/lib/utils';
 
 const menuItems = [
   { href: '/dashboard', label: 'Overview', icon: LayoutDashboard },
-  { href: '/dashboard/images', label: 'Image Management', icon: Image },
-  { href: '/dashboard/testimonials', label: 'Testimonials', icon: MessageSquare },
-  { href: '/dashboard/news', label: 'News Management', icon: Newspaper },
-  { href: '/dashboard/articles', label: 'Article Management', icon: FileText },
+  { href: '/dashboard/media', label: 'Media Library', icon: LibraryBig },
+  { href: '/dashboard/products', label: 'Product Management', icon: Package },
   { href: '/dashboard/analytics', label: 'Analytics', icon: BarChart3 },
   { type: 'separator' as const },
   { href: '/dashboard/profile', label: 'User Profile', icon: User },
@@ -98,7 +96,7 @@ export function Sidebar() {
           variant="ghost"
           className={cn(
             "w-full justify-start gap-2 text-left p-2 h-8 text-sm",
-             (!isMobile && sidebarState === "collapsed") && "w-8 h-8 p-0 justify-center"
+             (!isMobile && sidebarState === "collapsed") && "w-8 h-8 p-0 justify-center group-data-[collapsible=icon]:group-data-[state=collapsed]:[&>span]:hidden"
           )}
           onClick={logout}
           title="Logout"

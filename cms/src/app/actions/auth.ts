@@ -1,85 +1,79 @@
-
 'use server';
 
 import type { User, ServerActionResponse } from '@/types';
-// import { z } from 'zod'; // For input validation if needed later
+import { cookies } from 'next/headers';
+import { getAuthToken } from '@/lib/api-helpers';
 
-// Placeholder: In a real app, you'd use a library like bcrypt for password hashing/comparison
-// const MOCK_PASSWORD_HASH = 'hashed_password_for_demo_user'; // Do not use in production
+// ===================================================================================
+// IMPORTANT: AUTHENTICATION IS MOCKED
+// To ensure a smooth development experience without a backend dependency, all
+// authentication and user management actions are mocked. They do not make
+// real API calls.
+// ===================================================================================
 
-export async function loginAction(username: string, pass: string): Promise<ServerActionResponse<User>> {
-  console.log('Server Action: loginAction attempt for', username);
-  // Simulate database call and password check
-  await new Promise(resolve => setTimeout(resolve, 50)); // Reduced delay
+let mockUserStore: User = {
+    id: 'dev-user-01',
+    name: 'Tirta (Dev Mode)',
+    email: 'tirta@gmail.com',
+    role: 'ADMIN',
+    createdAt: new Date().toISOString(),
+    updatedAt: new Date().toISOString(),
+};
 
-  if (username.trim() !== '' && pass.trim() !== '') {
-    // Mock successful login
-    const loggedInUser: User = {
-      id: `user_${Date.now()}`,
-      username: username,
-      email: `${username.toLowerCase().replace(/\s+/g, '')}@example.com`,
-      displayName: username,
-      role: 'admin', // Default role for prototype
-      createdAt: new Date(),
-      updatedAt: new Date(),
-    };
-    console.log('Server Action: login successful for', username);
-    return { success: true, data: loggedInUser };
+// This action is mocked to always succeed, preventing startup errors.
+export async function fetchAndSetJwtAction(): Promise<ServerActionResponse<{token: string}>> {
+  console.log('Server Action: fetchAndSetJwtAction (Mock)');
+  const mockToken = 'mock-jwt-token-for-development';
+  (await cookies()).set('token', mockToken, {
+    httpOnly: true,
+    secure: process.env.NODE_ENV === 'production',
+    sameSite: 'strict',
+    path: '/',
+    maxAge: 60 * 60, // 1 hour
+  });
+  return { success: true, data: { token: mockToken } };
+}
+
+// Mock login to allow easy entry into the dashboard.
+export async function loginAction(email: string, pass: string): Promise<ServerActionResponse<User>> {
+  console.log('Server Action: loginAction (Mock) attempt for', email);
+  await new Promise(resolve => setTimeout(resolve, 500)); 
+
+  if (email && pass) {
+    // Return the current state of the mock user
+    return { success: true, data: mockUserStore };
   } else {
-    console.log('Server Action: login failed for', username);
-    return { success: false, error: 'Invalid username or password' };
+    return { success: false, error: "Invalid credentials (mock)" };
   }
 }
 
-export async function fetchUserProfile(userId?: string): Promise<ServerActionResponse<User | null>> {
-  console.log('Server Action: fetchUserProfile attempt for userId:', userId);
-  // Simulate fetching user based on session (if userId is not provided) or by ID
-  await new Promise(resolve => setTimeout(resolve, 50)); // Reduced delay
-
-  // For this placeholder, we'll assume no persistent session without a real backend token.
-  // If a userId is passed (e.g. from a mock context), we can return a mock user.
-  if (userId) {
-     const mockUser: User = {
-        id: userId,
-        username: "mockUser",
-        email: "mock@example.com",
-        displayName: "Mock User Profile",
-        role: 'admin',
-        createdAt: new Date(),
-        updatedAt: new Date(),
-      };
-      return { success: true, data: mockUser };
-  }
-  
-  return { success: true, data: null }; // No user session on initial load
+// Mock profile fetch.
+export async function fetchUserProfile(tokenOverride?: string): Promise<ServerActionResponse<User | null>> {
+  console.log('Server Action: fetchUserProfile (Mock)');
+  // In the mock setup, we directly return the mock user without a token check
+  // to ensure a smooth and error-free startup experience for development.
+  await new Promise(resolve => setTimeout(resolve, 50)); 
+  return { success: true, data: mockUserStore };
 }
 
+// Mock profile update.
 export async function updateUserProfileAction(
-  userId: string,
-  updates: Partial<Pick<User, 'displayName' | 'email' | 'role'>>
+  userId: string | number,
+  updates: Partial<Pick<User, 'name' | 'email' | 'role'>>
 ): Promise<ServerActionResponse<User>> {
-  console.log(`Server Action: updateUserProfileAction for user ${userId} with data:`, updates);
-  await new Promise(resolve => setTimeout(resolve, 50)); // Reduced delay
+   console.log('Server Action: updateUserProfileAction (Mock) for ID', userId);
+   // The token check is removed in the mock implementation to allow profile updates
+   // without a real backend connection.
+   await new Promise(resolve => setTimeout(resolve, 100));
 
-  // Mock successful update
-  const mockUpdatedUser: User = {
-    id: userId,
-    username: `user_${userId.substring(0,4)}`, // Preserve username
-    email: updates.email || `current_email_${userId.substring(0,4)}@example.com`,
-    displayName: updates.displayName || `Current Display Name ${userId.substring(0,4)}`,
-    role: updates.role || 'operator',
-    createdAt: new Date(Date.now() - 100000), // older date
-    updatedAt: new Date(),
-  };
-  console.log('Server Action: profile update successful for', userId);
-  return { success: true, data: mockUpdatedUser };
+   // Update the in-memory mock user
+   mockUserStore = { ...mockUserStore, ...updates, updatedAt: new Date().toISOString() };
+    
+   return { success: true, data: mockUserStore };
 }
 
 export async function logoutAction(): Promise<ServerActionResponse> {
   console.log('Server Action: logoutAction attempt');
-  await new Promise(resolve => setTimeout(resolve, 50)); // Reduced delay
-  // In a real app, you would invalidate the session here
-  console.log('Server Action: logout successful');
+  (await cookies()).delete('token');
   return { success: true };
 }
-

@@ -1,3 +1,4 @@
+
 "use client";
 
 import { useState } from 'react';
@@ -45,7 +46,7 @@ export default function SettingsPage() {
           </div>
         </CardContent>
       </Card>
-
+      
       <Card className="shadow-md">
         <CardHeader>
             <div className="flex items-center space-x-3 mb-1">
@@ -161,4 +162,3 @@ function SettingItem({ icon: Icon, label, children }: SettingItemProps) {
     </div>
   );
 }
-      

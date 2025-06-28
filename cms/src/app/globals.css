@@ -1,26 +1,108 @@
-@import "tailwindcss";
+@tailwind base;
+@tailwind components;
+@tailwind utilities;
 
-:root {
-  --background: #ffffff;
-  --foreground: #171717;
-}
-
-@theme inline {
-  --color-background: var(--background);
-  --color-foreground: var(--foreground);
-  --font-sans: var(--font-geist-sans);
-  --font-mono: var(--font-geist-mono);
-}
-
-@media (prefers-color-scheme: dark) {
+@layer base {
   :root {
-    --background: #0a0a0a;
-    --foreground: #ededed;
-  }
-}
+    --background: 207 100% 97.1%; /* #F0F9FF - Very light blue */
+    --foreground: 224 71.4% 4.1%; /* Dark for readability, e.g. #091A28 */
 
-body {
-  background: var(--background);
-  color: var(--foreground);
-  font-family: Arial, Helvetica, sans-serif;
+    --card: 0 0% 100%; /* White cards */
+    --card-foreground: 224 71.4% 4.1%; /* Dark text on cards */
+
+    --popover: 0 0% 100%; /* White popovers */
+    --popover-foreground: 224 71.4% 4.1%; /* Dark text on popovers */
+
+    --primary: 217 91.2% 59.8%; /* #3B82F6 - Strong blue */
+    --primary-foreground: 210 20% 98%; /* White-ish text on primary, e.g. #F8FAFC */
+
+    --secondary: 215 27.9% 83.9%; /* Lighter blue/gray #CAD6E7 */
+    --secondary-foreground: 224 71.4% 4.1%; /* Dark text on secondary */
+
+    --muted: 220 14.3% 95.9%; /* Very light gray/blue #F1F3F5 */
+    --muted-foreground: 220 8.9% 46.1%; /* Gray for muted text #6C757D */
+
+    --accent: 258 90.4% 66.3%; /* #8B5CF6 - Purple */
+    --accent-foreground: 0 0% 100%; /* White text on accent */
+
+    --destructive: 0 84.2% 60.2%;
+    --destructive-foreground: 0 0% 98%;
+
+    --border: 220 13% 91%; /* Light gray border #E9ECEF */
+    --input: 220 13% 91%;
+    --ring: 217 91.2% 59.8%; /* Primary color for focus rings */
+
+    --chart-1: 12 76% 61%;
+    --chart-2: 173 58% 39%;
+    --chart-3: 197 37% 24%;
+    --chart-4: 43 74% 66%;
+    --chart-5: 27 87% 67%;
+    --radius: 0.5rem;
+
+    /* Sidebar specific variables - can keep these as defaults or adjust if sidebar is distinct */
+    --sidebar-background: 0 0% 98%; /* Default: light gray, can be primary or background variant */
+    --sidebar-foreground: 224 71.4% 4.1%;
+    --sidebar-primary: 217 91.2% 59.8%;
+    --sidebar-primary-foreground: 210 20% 98%;
+    --sidebar-accent: 258 90.4% 66.3%;
+    --sidebar-accent-foreground: 0 0% 100%;
+    --sidebar-border: 220 13% 91%;
+    --sidebar-ring: 217 91.2% 59.8%;
+  }
+
+  .dark {
+    --background: 224 71.4% 4.1%;
+    --foreground: 210 20% 98%;
+
+    --card: 224 71.4% 4.1%;
+    --card-foreground: 210 20% 98%;
+
+    --popover: 224 71.4% 4.1%;
+    --popover-foreground: 210 20% 98%;
+
+    --primary: 210 20% 98%;
+    --primary-foreground: 217 91.2% 59.8%;
+
+    --secondary: 215 27.9% 16.1%; /* Darker shade for secondary */
+    --secondary-foreground: 210 20% 98%;
+
+    --muted: 215 27.9% 16.1%;
+    --muted-foreground: 215 20% 65.1%;
+
+    --accent: 258 90.4% 66.3%; /* Purple accent can remain similar */
+    --accent-foreground: 0 0% 100%;
+
+    --destructive: 0 62.8% 30.6%;
+    --destructive-foreground: 0 0% 98%;
+
+    --border: 215 27.9% 16.1%;
+    --input: 215 27.9% 16.1%;
+    --ring: 217 91.2% 59.8%;
+
+    --chart-1: 220 70% 50%;
+    --chart-2: 160 60% 45%;
+    --chart-3: 30 80% 55%;
+    --chart-4: 280 65% 60%;
+    --chart-5: 340 75% 55%;
+
+    --sidebar-background: 224 71.4% 4.1%;
+    --sidebar-foreground: 210 20% 98%;
+    --sidebar-primary: 210 20% 98%;
+    --sidebar-primary-foreground: 217 91.2% 59.8%;
+    --sidebar-accent: 258 90.4% 66.3%;
+    --sidebar-accent-foreground: 0 0% 100%;
+    --sidebar-border: 215 27.9% 16.1%;
+    --sidebar-ring: 217 91.2% 59.8%;
+  }
+  
+  * {
+    border-color: theme('colors.border');
+  }
+  
+  body {
+    background-color: theme('colors.background');
+    color: theme('colors.foreground');
+    font-family: var(--font-geist-sans), Arial, Helvetica, sans-serif;
+    font-feature-settings: "rlig" 1, "calt" 1;
+  }
 }

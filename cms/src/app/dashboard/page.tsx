@@ -4,19 +4,16 @@
 import { useState, useEffect } from 'react';
 import { Card, CardContent, CardDescription, CardHeader, CardTitle } from "@/components/ui/card";
 import Link from "next/link";
-import { Image, MessageSquare, Settings, Loader2, BarChart3, Newspaper, FileText } from "lucide-react";
-import type { ServerActionResponse, ImageItem, TestimonialItem, NewsItem, ArticleItem } from '@/types';
-import { fetchImagesAction } from '@/app/actions/images';
-import { fetchTestimonialsAction } from '@/app/actions/testimonials';
-import { fetchNewsItemsAction } from '@/app/actions/news';
-import { fetchArticlesAction } from '@/app/actions/articles';
+import { LibraryBig, Settings, Loader2, BarChart3, Package, User } from "lucide-react";
+import type { ServerActionResponse, MediaItem, ProductItem } from '@/types';
+import { fetchMediaItemsAction } from '@/app/actions/media';
+import { fetchProductsAction } from '@/app/actions/products';
 import { useToast } from '@/hooks/use-toast';
 
+
 export default function DashboardOverviewPage() {
-  const [imageCount, setImageCount] = useState<number | null>(null);
-  const [testimonialCount, setTestimonialCount] = useState<number | null>(null);
-  const [newsCount, setNewsCount] = useState<number | null>(null);
-  const [articleCount, setArticleCount] = useState<number | null>(null);
+  const [mediaCount, setMediaCount] = useState<number | null>(null);
+  const [productCount, setProductCount] = useState<number | null>(null);
   const [isLoadingStats, setIsLoadingStats] = useState(true);
   const { toast } = useToast();
 
@@ -24,32 +21,23 @@ export default function DashboardOverviewPage() {
     const loadStats = async () => {
       setIsLoadingStats(true);
       try {
-        const [imagesRes, testimonialsRes, newsRes, articlesRes] = await Promise.all([
-          fetchImagesAction(),
-          fetchTestimonialsAction(),
-          fetchNewsItemsAction(),
-          fetchArticlesAction(),
+        const [mediaRes, productsRes] = await Promise.all([
+          fetchMediaItemsAction(),
+          fetchProductsAction(),
         ]);
 
-        if (imagesRes.success && imagesRes.data) setImageCount(imagesRes.data.length);
-        else { setImageCount(0); console.error("Error fetching images:", imagesRes.error); }
+        if (mediaRes.success && mediaRes.data) setMediaCount(mediaRes.data.length);
+        else { setMediaCount(0); console.error("Error fetching media items:", mediaRes.error); }
         
-        if (testimonialsRes.success && testimonialsRes.data) setTestimonialCount(testimonialsRes.data.length);
-        else { setTestimonialCount(0); console.error("Error fetching testimonials:", testimonialsRes.error); }
+        if (productsRes.success && productsRes.data) setProductCount(productsRes.data.length);
+        else { setProductCount(0); console.error("Error fetching products:", productsRes.error); }
 
-        if (newsRes.success && newsRes.data) setNewsCount(newsRes.data.length);
-        else { setNewsCount(0); console.error("Error fetching news items:", newsRes.error); }
-
-        if (articlesRes.success && articlesRes.data) setArticleCount(articlesRes.data.length);
-        else { setArticleCount(0); console.error("Error fetching articles:", articlesRes.error); }
 
       } catch (error) {
         console.error("Error loading stats from server actions:", error);
         toast({ title: "Stat Loading Error", description: "Could not load all content statistics.", variant: "destructive" });
-        setImageCount(0);
-        setTestimonialCount(0);
-        setNewsCount(0);
-        setArticleCount(0);
+        setMediaCount(0);
+        setProductCount(0);
       } finally {
         setIsLoadingStats(false);
       }
@@ -57,7 +45,7 @@ export default function DashboardOverviewPage() {
     loadStats();
   }, [toast]);
 
-return (
+  return (
     <div className="space-y-8">
       <Card className="shadow-lg">
         <CardHeader>
@@ -71,28 +59,22 @@ return (
           </p>
           <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-4">
             <DashboardLinkCard
-              href="/dashboard/images"
-              icon={Image}
-              title="Image Management"
-              description="Upload, view, and manage your images."
+              href="/dashboard/media"
+              icon={LibraryBig}
+              title="Media Library"
+              description="Upload, view, and manage your images and media."
             />
             <DashboardLinkCard
-              href="/dashboard/testimonials"
-              icon={MessageSquare}
-              title="Testimonials"
-              description="Add and organize customer testimonials."
+              href="/dashboard/products"
+              icon={Package}
+              title="Product Management"
+              description="Manage your product catalog and pricing."
             />
-            <DashboardLinkCard
-              href="/dashboard/news"
-              icon={Newspaper}
-              title="News Management"
-              description="Create and manage news items."
-            />
-            <DashboardLinkCard
-              href="/dashboard/articles"
-              icon={FileText}
-              title="Article Management"
-              description="Write and publish articles."
+             <DashboardLinkCard
+              href="/dashboard/profile"
+              icon={User}
+              title="User Profile"
+              description="Manage your profile information."
             />
              <DashboardLinkCard
               href="/dashboard/settings"
@@ -110,25 +92,21 @@ return (
         </CardContent>
       </Card>
 
-        <Card>
+      <Card>
         <CardHeader>
           <CardTitle>Quick Stats</CardTitle>
           <CardDescription>A brief overview of your content.</CardDescription>
         </CardHeader>
-        <CardContent className="grid grid-cols-2 md:grid-cols-4 gap-4">
+        <CardContent className="grid grid-cols-2 sm:grid-cols-3 md:grid-cols-5 gap-4">
           {isLoadingStats ? (
             <>
-              <StatCard title="Total Images" valueContent={<Loader2 className="h-5 w-5 animate-spin text-muted-foreground" />} />
-              <StatCard title="Total Testimonials" valueContent={<Loader2 className="h-5 w-5 animate-spin text-muted-foreground" />} />
-              <StatCard title="Total News" valueContent={<Loader2 className="h-5 w-5 animate-spin text-muted-foreground" />} />
-              <StatCard title="Total Articles" valueContent={<Loader2 className="h-5 w-5 animate-spin text-muted-foreground" />} />
+              <StatCard title="Total Media" valueContent={<Loader2 className="h-5 w-5 animate-spin text-muted-foreground" />} />
+              <StatCard title="Total Products" valueContent={<Loader2 className="h-5 w-5 animate-spin text-muted-foreground" />} />
             </>
           ) : (
             <>
-              <StatCard title="Total Images" value={imageCount !== null ? imageCount.toString() : "N/A"} />
-              <StatCard title="Total Testimonials" value={testimonialCount !== null ? testimonialCount.toString() : "N/A"} />
-              <StatCard title="Total News" value={newsCount !== null ? newsCount.toString() : "N/A"} />
-              <StatCard title="Total Articles" value={articleCount !== null ? articleCount.toString() : "N/A"} />
+              <StatCard title="Total Media" value={mediaCount !== null ? mediaCount.toString() : "N/A"} />
+              <StatCard title="Total Products" value={productCount !== null ? productCount.toString() : "N/A"} />
             </>
           )}
         </CardContent>
